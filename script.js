@@ -54,7 +54,7 @@ function goToHearts() {
     
     // 2 секундтан кейін бетті ауыстыру
     setTimeout(() => {
-        window.location.href = 'сердечко/heart.html';
+        window.location.href = 'heart/heart.html';
     }, 1000);
 }
 
@@ -132,4 +132,5 @@ setInterval(() => {
     if (Math.random() > 0.7) {
         createStars(3);
     }
+
 }, 3000);
