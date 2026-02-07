@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Love Card</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style-ios.css">
+    <!-- iOS ТҮЗЕТУЛЕРІ -->
+    <link rel="stylesheet" href="style-ios-fixed.css">
 </head>
 <body>
-    <div class="card-closed" id="closedCard">
+    <div class="card-closed" id="closedCard" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <div class="envelope">
             <div class="envelope-heart">❤</div>
-            <div class="envelope-text"></div>
+            <div class="envelope-text">For You</div>
         </div>
         <button class="open-btn" onclick="openCard()">OPEN</button>
     </div>
 
-    <div class="card-opened" id="openedCard">
+    <div class="card-opened" id="openedCard" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);">
         <div class="letter">
             <div class="letter-header">
                 <h2>To Anel</h2>
@@ -32,5 +35,4 @@
 
     <script src="script.js"></script>
 </body>
-</html> 
-
+</html>
