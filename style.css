@@ -364,7 +364,7 @@ body::before {
     animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* iPhone 14 (430px) үшін арнайы стильдер - ҮЛКЕНІРЕК */
+/* iPhone 14 (430px) үшін арнайы стильдер - 2 ЕСЕ ҮЛКЕН */
 @media (max-width: 430px) {
     body {
         padding: 15px;
@@ -397,12 +397,12 @@ body::before {
     }
     
     .envelope-heart {
-        font-size: 120px; /* ЕКІ ЕСЕ ҮЛКЕН */
+        font-size: 120px; /* 2 ЕСЕ ҮЛКЕН (90px → 120px) */
         margin-bottom: 30px;
     }
     
     .envelope-text {
-        font-size: 42px; /* ЕКІ ЕСЕ ҮЛКЕН */
+        font-size: 42px; /* 2 ЕСЕ ҮЛКЕН (32px → 42px) */
         letter-spacing: 4px;
     }
     
@@ -421,7 +421,7 @@ body::before {
     }
     
     .letter-header h2 {
-        font-size: 36px; /* ҮЛКЕНІРЕК */
+        font-size: 36px; /* ҮЛКЕНІРЕК (28px → 36px) */
         margin-bottom: 15px;
     }
     
@@ -430,7 +430,7 @@ body::before {
     }
     
     .handwriting {
-        font-size: 28px; /* ЕКІ ЕСЕ ҮЛКЕН - телефоннан көрінуі үшін */
+        font-size: 28px; /* 2 ЕСЕ ҮЛКЕН (22px → 28px) */
         line-height: 1.6;
         margin-bottom: 20px;
     }
@@ -456,7 +456,7 @@ body::before {
     }
 }
 
-/* Кіші экрандар үшін (380px) - ҚАЛПЫНА КЕЛТІРЕМІЗ */
+/* Басқа экрандар үшін (500px) - БАЯҒЫДАҒЫ КҮЙІНДЕ */
 @media (max-width: 500px) {
     .card-closed {
         width: 90vw;
@@ -505,3 +505,5 @@ body::before {
         font-size: 16px;
     }
 }
+
+/* Тек iPhone 14 үшін арнайы стильдер (430px) бар, қалғаны барлығы баяғыдай */
