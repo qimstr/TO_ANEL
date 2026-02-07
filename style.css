@@ -1,146 +1,225 @@
 /* 
-  iOS-ге арналған түзетулер
-  - Элементтерді ортаға туралау
-  - Карточканы үлкейту (2 есеге жақын)
+  iOS ҮШІН ТОЛЫҚ ТҮЗЕТУ
+  - Бәрін ортаға шығару
+  - Карточканы үлкейту (телефонда кіші болмау үшін)
   - Кнопкаларды үлкен ету
-  - Мәтіннің оқылуын жеңілдету
 */
 
-/* Негізгі ортаға туралау */
+/* 1. БҮКІЛ БЕДІ ҚАЙТА БАПТАУ */
 body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
     display: flex !important;
     justify-content: center !important;
     align-items: center !important;
-    min-height: 100vh !important;
-    padding: 20px !important;
-    overflow-x: hidden !important;
+    overflow: hidden !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    background: linear-gradient(135deg, #14000a 0%, #000000 100%) !important;
 }
 
-/* ЖАБЫҚ КАРТОЧКА - ортаға туралау */
+/* 2. ЖАБЫҚ КАРТОЧКА - ОРТАДА ЖӘНЕ ҮЛКЕН */
 .card-closed {
-    width: 95% !important;
-    max-width: 500px !important;
-    margin: 0 auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: absolute !important;
+    position: fixed !important;
     top: 50% !important;
     left: 50% !important;
     transform: translate(-50%, -50%) !important;
-    z-index: 10 !important;
-}
-
-/* АШЫҚ КАРТОЧКА - үлкейту және ортаға туралау */
-.card-opened {
-    width: 95% !important;
-    max-width: 600px !important;
-    min-height: 600px !important;
-    margin: 0 auto !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    justify-content: center !important;
-    position: absolute !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) scale(1) !important; /* Ескі масштабты алып тастау */
-    transform-origin: center center !important;
-    z-index: 10 !important;
-}
-
-/* ХАТ бөлімін үлкейту */
-.letter {
-    width: 100% !important;
-    padding: 40px 30px !important;
-    min-height: 500px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: space-between !important;
-    margin-bottom: 40px !important;
-}
-
-/* Мәтінді үлкейту және оқуды жеңілдету */
-.letter-content.handwriting {
-    font-size: 28px !important; /* iOS үшін үлкейту */
-    line-height: 1.6 !important;
-    color: rgba(255, 255, 255, 0.95) !important;
-    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5) !important;
-    flex-grow: 1 !important;
-    padding: 20px 10px !important;
-    text-align: justify !important;
-    overflow-y: auto !important;
-    max-height: 300px !important;
-    margin: 20px 0 !important;
-}
-
-/* Тақырыпты үлкейту */
-.letter-header h2 {
-    font-size: 36px !important;
-    margin-bottom: 20px !important;
-}
-
-/* Кнопкаларды үлкейту - iOS үшін */
-.open-btn, .close-btn, .tap-btn {
-    min-height: 60px !important; /* Көбірек жер басу үшін */
-    font-size: 24px !important; /* Мәтінді үлкейту */
-    padding: 20px 25px !important;
-    border-radius: 15px !important;
-    cursor: pointer !important;
-    -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3) !important; /* iOS басу эффектісі */
-}
-
-/* Тап кнопкасын үлкейту */
-.tap-btn {
-    font-size: 22px !important;
-    padding: 22px !important;
-    margin-top: 30px !important;
-    margin-bottom: 10px !important;
-}
-
-/* Жабу кнопкасын орналастыру */
-.close-btn {
     width: 90% !important;
     max-width: 500px !important;
-    margin-top: 30px !important;
-    position: relative !important;
-    bottom: 0 !important;
-    right: 0 !important;
+    z-index: 1000 !important;
+    text-align: center !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
 }
 
-/* Конвертті ортаға туралау */
+/* 3. КОНВЕРТТІ ҮЛКЕЙТУ */
 .envelope {
-    height: 320px !important; /* iOS үшін үлкейту */
+    width: 100% !important;
+    height: 350px !important;
+    margin-bottom: 40px !important;
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    margin: 0 auto 40px auto !important;
 }
 
-/* Жүрекше үлкейту */
+/* 4. ЖҮРЕКТІ ҮЛКЕЙТУ */
 .envelope-heart {
-    font-size: 120px !important; /* iOS үшін үлкейту */
+    font-size: 140px !important;
     margin-bottom: 30px !important;
 }
 
-/* Конверт мәтінін үлкейту */
+/* 5. КОНВЕРТ МӘТІНІ */
 .envelope-text {
-    font-size: 38px !important; /* iOS үшін үлкейту */
+    font-size: 40px !important;
+    font-weight: bold !important;
 }
 
-/* iOS үшін арнайы түзетулер */
+/* 6. АШУ КНОПКАСЫ */
+.open-btn {
+    width: 100% !important;
+    padding: 25px !important;
+    font-size: 28px !important;
+    min-height: 70px !important;
+    border-radius: 20px !important;
+}
+
+/* 7. АШЫҚ КАРТОЧКА - ОРТАДА ЖӘНЕ ӨТЕ ҮЛКЕН */
+.card-opened {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90% !important;
+    max-width: 650px !important;
+    min-height: 700px !important;
+    z-index: 1000 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    padding: 20px !important;
+}
+
+/* 8. ХАТ БӨЛІМІ */
+.letter {
+    width: 100% !important;
+    min-height: 550px !important;
+    padding: 40px !important;
+    margin-bottom: 30px !important;
+    display: flex !important;
+    flex-direction: column !important;
+}
+
+/* 9. ХАТ ТАҚЫРЫБЫ */
+.letter-header {
+    margin-bottom: 30px !important;
+}
+
+.letter-header h2 {
+    font-size: 42px !important;
+    margin-bottom: 20px !important;
+}
+
+.valentine-date {
+    font-size: 24px !important;
+}
+
+/* 10. НЕГІЗГІ МӘТІН - ӨТЕ ҮЛКЕН */
+.letter-content.handwriting {
+    font-size: 32px !important;
+    line-height: 1.8 !important;
+    flex-grow: 1 !important;
+    padding: 20px !important;
+    text-align: justify !important;
+    color: white !important;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
+    overflow-y: auto !important;
+    max-height: 350px !important;
+    margin: 20px 0 !important;
+}
+
+/* 11. ТАП КНОПКАСЫ */
+.tap-btn {
+    width: 100% !important;
+    padding: 25px !important;
+    font-size: 26px !important;
+    min-height: 70px !important;
+    border-radius: 20px !important;
+    margin-top: 30px !important;
+}
+
+/* 12. ЖАБУ КНОПКАСЫ */
+.close-btn {
+    width: 100% !important;
+    max-width: 500px !important;
+    padding: 25px !important;
+    font-size: 28px !important;
+    min-height: 70px !important;
+    border-radius: 20px !important;
+    margin-top: 20px !important;
+}
+
+/* 13. МОБИЛЬДІ ЭКРАНДАР ҮШІН */
 @media screen and (max-width: 768px) {
-    /* Мобильді құрылғылар үшін */
+    /* Жабық карточка */
+    .card-closed {
+        width: 95% !important;
+    }
+    
+    .envelope {
+        height: 300px !important;
+    }
+    
+    .envelope-heart {
+        font-size: 120px !important;
+    }
+    
+    .envelope-text {
+        font-size: 36px !important;
+    }
+    
+    /* Ашық карточка */
     .card-opened {
-        width: 92% !important;
-        min-height: 550px !important;
+        width: 95% !important;
+        min-height: 650px !important;
     }
     
     .letter {
-        padding: 35px 25px !important;
+        min-height: 500px !important;
+        padding: 30px !important;
+    }
+    
+    .letter-header h2 {
+        font-size: 36px !important;
+    }
+    
+    .letter-content.handwriting {
+        font-size: 28px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* Кнопкалар */
+    .open-btn, .close-btn, .tap-btn {
+        padding: 22px !important;
+        font-size: 24px !important;
+        min-height: 65px !important;
+    }
+}
+
+/* 14. КІШІ ЭКРАНДАР ҮШІН (iPhone SE, iPhone 8) */
+@media screen and (max-width: 375px) {
+    .card-closed {
+        width: 96% !important;
+    }
+    
+    .envelope {
+        height: 280px !important;
+    }
+    
+    .envelope-heart {
+        font-size: 100px !important;
+    }
+    
+    .envelope-text {
+        font-size: 32px !important;
+    }
+    
+    .card-opened {
+        width: 96% !important;
+        min-height: 600px !important;
+    }
+    
+    .letter {
         min-height: 450px !important;
+        padding: 25px !important;
+    }
+    
+    .letter-header h2 {
+        font-size: 32px !important;
     }
     
     .letter-content.handwriting {
@@ -148,65 +227,51 @@ body {
         line-height: 1.5 !important;
     }
     
-    .letter-header h2 {
-        font-size: 32px !important;
-    }
-    
-    /* Кнопкаларды оңтайландыру - жер басу үшін */
     .open-btn, .close-btn, .tap-btn {
-        min-height: 55px !important;
+        padding: 20px !important;
         font-size: 22px !important;
-        padding: 18px 22px !important;
-    }
-    
-    .tap-btn {
-        min-height: 50px !important;
-    }
-    
-    /* Кіші iPhone экрандары үшін */
-    @media screen and (max-width: 375px) {
-        .card-opened {
-            width: 90% !important;
-            min-height: 500px !important;
-        }
-        
-        .letter-content.handwriting {
-            font-size: 24px !important;
-            padding: 15px 8px !important;
-        }
-        
-        .letter-header h2 {
-            font-size: 28px !important;
-        }
+        min-height: 60px !important;
     }
 }
 
-/* iOS Safari үшін арнайы түзетулер */
+/* 15. iOS SAFARI АРНАЙЫ ТҮЗЕТУЛЕР */
 @supports (-webkit-touch-callout: none) {
-    /* iOS үшін карточканы ортаға туралау */
-    .card-closed, .card-opened {
-        position: fixed !important;
-        top: 50% !important;
-        left: 50% !important;
-        transform: translate(-50%, -50%) !important;
+    body {
+        height: -webkit-fill-available !important;
     }
     
-    /* iOS жер басу аймағын кеңейту */
+    /* Жер басу аймағын жақсарту */
     button {
         cursor: pointer !important;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.4) !important;
     }
     
-    /* iOS прокруткасын жақсарту */
+    /* Прокрутканы жақсарту */
     .letter-content.handwriting {
         -webkit-overflow-scrolling: touch !important;
     }
+    
+    /* iOS адрес жолағын есепке алу */
+    @media (max-height: 800px) {
+        .card-opened {
+            min-height: 550px !important;
+        }
+        
+        .letter {
+            min-height: 420px !important;
+        }
+        
+        .letter-content.handwriting {
+            max-height: 280px !important;
+        }
+    }
 }
 
-/* Анимацияларды жақсарту */
-@keyframes fadeInIOS {
+/* 16. АНИМАЦИЯЛАР */
+@keyframes iosFadeIn {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.95) !important;
+        transform: translate(-50%, -50%) scale(0.9) !important;
     }
     to {
         opacity: 1;
@@ -215,5 +280,20 @@ body {
 }
 
 .card-closed, .card-opened {
-    animation: fadeInIOS 0.5s ease-out !important;
+    animation: iosFadeIn 0.5s ease-out !important;
+}
+
+/* 17. БАРЛЫҚ ЭЛЕМЕНТТЕРДІ КӨРСЕТУ ҮШІН */
+.card-closed, .card-opened {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* 18. ЖАБЫҚ КАРТОЧКА КӨРІНБЕЙТІН БОЛСА */
+.card-closed[style*="display: none"] {
+    display: none !important;
+}
+
+.card-opened[style*="display: none"] {
+    display: none !important;
 }
