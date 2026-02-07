@@ -3,30 +3,34 @@
 <head>
     <title>Love Card</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 </head>
 <body>
-    <div class="card-closed" id="closedCard">
-        <div class="envelope">
-            <div class="envelope-heart">❤</div>
-            <div class="envelope-text"></div>
+    <!-- Негізгі контейнер - ОРТАДА ҚАТАЙЫП ТҰРАДЫ -->
+    <div class="main-container">
+        <div class="card-closed" id="closedCard">
+            <div class="envelope">
+                <div class="envelope-heart">❤</div>
+                <div class="envelope-text"></div>
+            </div>
+            <button class="open-btn" onclick="openCard()">OPEN</button>
         </div>
-        <button class="open-btn" onclick="openCard()">OPEN</button>
-    </div>
 
-    <div class="card-opened" id="openedCard">
-        <div class="letter">
-            <div class="letter-header">
-                <h2>To Anel</h2>
-                <div class="valentine-date">Happy Valentine's Day</div>
+        <div class="card-opened" id="openedCard">
+            <div class="letter">
+                <div class="letter-header">
+                    <h2>To Anel</h2>
+                    <div class="valentine-date">Happy Valentine's Day</div>
+                </div>
+                
+                <div class="letter-content handwriting">
+                    <p>Желаю тебе найти настоящего возлюбленного а если все же не получится найти то ты можешь всегда положится на меня желаю найти настоящего валентинку твоей жизни а так всегда помни что я люблю тебя</p>
+                </div>
+                
+                <button class="tap-btn" onclick="goToHearts()">Tap me</button>
             </div>
-            
-            <div class="letter-content handwriting">
-                <p>Желаю тебе найти настоящего возлюбленного а если все же не получится найти то ты можешь всегда положится на меня желаю найти настоящего валентинку твоей жизни а так всегда помни что я люблю тебя</p>
-            </div>
-            
-            <button class="tap-btn" onclick="goToHearts()">Tap me</button>
+            <button class="close-btn" onclick="closeCard()">CLOSE</button>
         </div>
-        <button class="close-btn" onclick="closeCard()">CLOSE</button>
     </div>
 
     <script src="script.js"></script>
