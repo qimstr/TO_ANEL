@@ -1,3 +1,4 @@
+/* Негізгі стильдер */
 * {
     margin: 0;
     padding: 0;
@@ -13,6 +14,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
     position: relative;
+    padding: 20px; /* Ортаға алу үшін */
 }
 
 /* Жұлдызшалар фонға */
@@ -38,11 +40,13 @@ body::before {
     100% { opacity: 0.7; }
 }
 
+/* КАРТОЧКАЛАРДЫ ОРТАҒА АПАРАМЫЗ */
 .card-closed {
     width: 450px;
     text-align: center;
     position: relative;
     z-index: 2;
+    margin: 0 auto; /* Ортаға */
 }
 
 .card-opened {
@@ -52,8 +56,11 @@ body::before {
     z-index: 2;
     transform: scale(0.85);
     transform-origin: center;
+    margin: 0 auto; /* Ортаға */
+    display: none;
 }
 
+/* Конвертті ОРТАҒА */
 .envelope {
     background: linear-gradient(135deg, #ff3366 0%, #ff0066 100%);
     height: 280px;
@@ -69,6 +76,8 @@ body::before {
         0 20px 40px rgba(255, 51, 102, 0.3),
         inset 0 1px 0 rgba(255, 255, 255, 0.2);
     border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-left: auto; /* Ортаға */
+    margin-right: auto; /* Ортаға */
 }
 
 .envelope::before {
@@ -121,6 +130,7 @@ body::before {
     color: transparent;
 }
 
+/* Батырмаларды ОРТАҒА */
 .open-btn, .close-btn {
     width: 100%;
     padding: 20px;
@@ -133,6 +143,9 @@ body::before {
     letter-spacing: 2px;
     position: relative;
     overflow: hidden;
+    display: block;
+    margin-left: auto; /* Ортаға */
+    margin-right: auto; /* Ортаға */
 }
 
 .open-btn::before, .close-btn::before {
@@ -185,10 +198,7 @@ body::before {
     box-shadow: 0 12px 35px rgba(108, 117, 125, 0.5);
 }
 
-.card-opened {
-    display: none;
-}
-
+/* Хатты ОРТАҒА */
 .letter {
     background: linear-gradient(135deg, 
         rgba(20, 0, 10, 0.9) 0%, 
@@ -202,6 +212,8 @@ body::before {
         0 20px 50px rgba(0, 0, 0, 0.5),
         inset 0 1px 0 rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.05);
+    margin-left: auto; /* Ортаға */
+    margin-right: auto; /* Ортаға */
 }
 
 .letter::before {
@@ -277,7 +289,6 @@ body::before {
 
 .letter-content {
     text-align: left;
-
 }
 
 .handwriting {
@@ -364,19 +375,122 @@ body::before {
     animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Адаптивтілік */
+/* iPhone 14 (430px) үшін арнайы стильдер - 2 ЕСЕ ҮЛКЕН ЖӘНЕ ОРТАҒА */
+@media (max-width: 430px) {
+    body {
+        padding: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow-y: auto;
+    }
+    
+    .card-closed {
+        width: 100%;
+        max-width: 400px; /* Ортаға */
+        text-align: center;
+        margin: 0 auto; /* Ортаға */
+    }
+    
+    .card-opened {
+        width: 100%;
+        max-width: 400px; /* Ортаға */
+        text-align: center;
+        margin: 0 auto; /* Ортаға */
+        transform: scale(1); /* Масштабты қайтарамыз */
+    }
+    
+    .envelope {
+        height: 320px; /* 2 ЕСЕ ҮЛКЕН (280px → 320px) */
+        border-radius: 30px;
+        margin-bottom: 35px;
+        width: 100%;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
+    }
+    
+    .envelope-heart {
+        font-size: 120px; /* 2 ЕСЕ ҮЛКЕН (90px → 120px) */
+        margin-bottom: 30px;
+    }
+    
+    .envelope-text {
+        font-size: 42px; /* 2 ЕСЕ ҮЛКЕН (32px → 42px) */
+        letter-spacing: 4px;
+    }
+    
+    .open-btn, .close-btn {
+        padding: 24px; /* Үлкенірек */
+        font-size: 26px; /* 2 ЕСЕ ҮЛКЕН (22px → 26px) */
+        border-radius: 20px;
+        width: 100%;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
+    }
+    
+    .letter {
+        padding: 35px 30px; /* Үлкенірек */
+        border-radius: 30px;
+        margin-bottom: 25px;
+        width: 100%;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
+    }
+    
+    .letter-header h2 {
+        font-size: 36px; /* 2 ЕСЕ ҮЛКЕН (28px → 36px) */
+        margin-bottom: 15px;
+    }
+    
+    .valentine-date {
+        font-size: 20px; /* Үлкенірек */
+    }
+    
+    .handwriting {
+        font-size: 28px; /* 2 ЕСЕ ҮЛКЕН (22px → 28px) */
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+    
+    .handwriting p {
+        text-align: center; /* Ортаға */
+    }
+    
+    .wish {
+        font-size: 22px; /* Үлкенірек */
+        margin-bottom: 12px;
+    }
+    
+    .tap-btn {
+        padding: 20px; /* Үлкенірек */
+        font-size: 22px; /* 2 ЕСЕ ҮЛКЕН (18px → 22px) */
+        border-radius: 18px;
+        margin-top: 25px;
+    }
+    
+    .close-btn {
+        margin-top: 25px;
+    }
+}
+
+/* Басқа экрандар үшін (500px) - БАЯҒЫДАҒЫ КҮЙІНДЕ ЖӘНЕ ОРТАҒА */
 @media (max-width: 500px) {
     .card-closed {
         width: 90vw;
         padding: 0 10px;
+        margin: 0 auto; /* Ортаға */
     }
     
     .card-opened {
         width: 76vw;
+        margin: 0 auto; /* Ортаға */
     }
     
     .envelope {
         height: 220px;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
     }
     
     .envelope-heart {
@@ -389,6 +503,8 @@ body::before {
     
     .letter {
         padding: 20px;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
     }
     
     .letter-header h2 {
@@ -406,6 +522,8 @@ body::before {
     .open-btn, .close-btn {
         padding: 16px;
         font-size: 18px;
+        margin-left: auto; /* Ортаға */
+        margin-right: auto; /* Ортаға */
     }
     
     .tap-btn {
@@ -413,34 +531,34 @@ body::before {
         font-size: 16px;
     }
 }
+
+/* Төмендегі қосымша бөліктерді ЖОЯМЫЗ */
 .card-opened {
-    /* Можно регулировать ширину и высоту */
-    width: 500px; /* Измени на нужную ширину */
-    max-width: 90%; /* Чтобы адаптировалось на мобильных */
+    width: 380px; /* Қалпына келтіреміз */
+    max-width: none;
 }
- 
+
 .letter {
-    /* Регулируй отступы внутри письма */
-    padding: 40px 35px; /* Увеличил отступы */
-    width: 100%; /* Занимает всю доступную ширину */
+    padding: 30px; /* Қалпына келтіреміз */
+    width: auto;
 }
 
 .letter-content.handwriting {
-    /* Стили для текстового блока */
-    min-height: 200px; /* Минимальная высота */
-    max-height: 300px; /* Максимальная высота */
-    overflow-y: auto; /* Прокрутка если текст не помещается */
-    padding: 15px;
-    margin: 20px 0;
+    /* Бұл стильдерді жоямыз */
+    min-height: auto;
+    max-height: none;
+    overflow-y: visible;
+    padding: 0;
+    margin: 0;
     text-align: left;
-    line-height: 1.6;
-    font-size: 18px;
+    line-height: 1.4;
+    font-size: 22px;
 }
 
 .close-btn {
-    /* Позиционирование кнопки CLOSE */
-    position: absolute;
-    bottom: -60px;
-    right: 0px;
-    margin-top: 20px;
+    /* Қалпына келтіреміз */
+    position: static;
+    bottom: auto;
+    right: auto;
+    margin-top: 25px;
 }
