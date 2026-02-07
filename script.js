@@ -4,7 +4,9 @@ function openCard() {
     const envelopeContainer = document.getElementById('envelopeContainer');
     
     // Конверт ашылу анимациясы
-    envelopeContainer.classList.add('open');
+    if (envelopeContainer) {
+        envelopeContainer.classList.add('open');
+    }
     
     // Жұлдызшалар эффектісі
     createStars(15);
@@ -12,46 +14,7 @@ function openCard() {
     // 0.8 секундтан кейін (конверт ашылып болғаннан кейін)
     setTimeout(() => {
         closedCard.style.display = 'none';
-        openedCard.style.display = 'block';
-        
-        // Анимация ашу
-        setTimeout(() => {
-            openedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-            openedCard.style.opacity = '1';
-        }, 10);
-    }, 800);
-}
-
-function closeCard() {
-    const closedCard = document.getElementById('closedCard');
-    const openedCard = document.getElementById('openedCard');
-    const envelopeContainer = document.getElementById('envelopeContainer');
-    
-    // Конверт жабылу анимациясы
-    envelopeContainer.classList.remove('open');
-    
-    // Жұлдызшалар эффектісі
-    createStars(10);
-    
-    openedCard.style.display = 'none';
-    closedCard.style.display = 'block';
-    
-    // Анимация ашу
-    setTimeout(() => {
-        closedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
-        closedCard.style.opacity = '1';
-    }, 10);
-}
-
-    
-    // Жабық карточканы жасыру
-    closedCard.style.animation = 'none';
-    closedCard.style.opacity = '0';
-    closedCard.style.transform = 'translate(-50%, -50%) scale(0.9) translateY(20px)';
-    
-    setTimeout(() => {
-        closedCard.style.display = 'none';
-        openedCard.style.display = 'flex'; // flex деп өзгерту ортаға туралау үшін
+        openedCard.style.display = 'flex';
         
         // iOS үшін орналастыруды бекіту
         openedCard.style.position = 'fixed';
@@ -62,6 +25,8 @@ function closeCard() {
         openedCard.style.maxWidth = '650px';
         openedCard.style.zIndex = '1000';
         openedCard.style.minHeight = '600px';
+        openedCard.style.flexDirection = 'column';
+        openedCard.style.alignItems = 'center';
         
         // Анимация ашу
         setTimeout(() => {
@@ -69,12 +34,18 @@ function closeCard() {
             openedCard.style.opacity = '1';
             openedCard.style.transform = 'translate(-50%, -50%) scale(1)';
         }, 10);
-    }, 400);
+    }, 800);
 }
 
 function closeCard() {
     const closedCard = document.getElementById('closedCard');
     const openedCard = document.getElementById('openedCard');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    
+    // Конверт жабылу анимациясы
+    if (envelopeContainer) {
+        envelopeContainer.classList.remove('open');
+    }
     
     // Жұлдызшалар эффектісі
     createStars(10);
@@ -86,7 +57,7 @@ function closeCard() {
     
     setTimeout(() => {
         openedCard.style.display = 'none';
-        closedCard.style.display = 'flex'; // flex деп өзгерту
+        closedCard.style.display = 'flex';
         
         // iOS үшін орналастыруды бекіту
         closedCard.style.position = 'fixed';
@@ -96,6 +67,8 @@ function closeCard() {
         closedCard.style.width = '90%';
         closedCard.style.maxWidth = '500px';
         closedCard.style.zIndex = '1000';
+        closedCard.style.flexDirection = 'column';
+        closedCard.style.alignItems = 'center';
         
         // Анимация ашу
         setTimeout(() => {
@@ -110,7 +83,7 @@ function goToHearts() {
     // Жүректер эффектісі
     createHeartsEffect();
     
-    // 2 секундтан кейін бетті ауыстыру - ЕСКЕРТУ: Сіз бұл функцияны өзгерткіңіз келмейді
+    // 2 секундтан кейін бетті ауыстыру
     setTimeout(() => {
         window.location.href = 'heart/heart.html';
     }, 1000);
@@ -180,30 +153,34 @@ document.addEventListener('DOMContentLoaded', () => {
     const openedCard = document.getElementById('openedCard');
     
     // iOS үшін бастапқы орналастыруды бекіту
-    closedCard.style.position = 'fixed';
-    closedCard.style.top = '50%';
-    closedCard.style.left = '50%';
-    closedCard.style.transform = 'translate(-50%, -50%)';
-    closedCard.style.width = '90%';
-    closedCard.style.maxWidth = '500px';
-    closedCard.style.opacity = '1';
-    closedCard.style.display = 'flex';
-    closedCard.style.flexDirection = 'column';
-    closedCard.style.alignItems = 'center';
-    closedCard.style.zIndex = '1000';
+    if (closedCard) {
+        closedCard.style.position = 'fixed';
+        closedCard.style.top = '50%';
+        closedCard.style.left = '50%';
+        closedCard.style.transform = 'translate(-50%, -50%)';
+        closedCard.style.width = '90%';
+        closedCard.style.maxWidth = '500px';
+        closedCard.style.opacity = '1';
+        closedCard.style.display = 'flex';
+        closedCard.style.flexDirection = 'column';
+        closedCard.style.alignItems = 'center';
+        closedCard.style.zIndex = '1000';
+    }
     
-    openedCard.style.position = 'fixed';
-    openedCard.style.top = '50%';
-    openedCard.style.left = '50%';
-    openedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
-    openedCard.style.width = '90%';
-    openedCard.style.maxWidth = '650px';
-    openedCard.style.opacity = '0';
-    openedCard.style.display = 'none';
-    openedCard.style.flexDirection = 'column';
-    openedCard.style.alignItems = 'center';
-    openedCard.style.zIndex = '1000';
-    openedCard.style.minHeight = '600px';
+    if (openedCard) {
+        openedCard.style.position = 'fixed';
+        openedCard.style.top = '50%';
+        openedCard.style.left = '50%';
+        openedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        openedCard.style.width = '90%';
+        openedCard.style.maxWidth = '650px';
+        openedCard.style.opacity = '0';
+        openedCard.style.display = 'none';
+        openedCard.style.flexDirection = 'column';
+        openedCard.style.alignItems = 'center';
+        openedCard.style.zIndex = '1000';
+        openedCard.style.minHeight = '600px';
+    }
     
     // iOS Safari үшін бекіту
     if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
@@ -240,4 +217,3 @@ setInterval(() => {
         createStars(3);
     }
 }, 3000);
-
