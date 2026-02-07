@@ -1,4 +1,4 @@
-function openCard() {
+ function openCard() {
     const closedCard = document.getElementById('closedCard');
     const openedCard = document.getElementById('openedCard');
     
@@ -54,7 +54,7 @@ function goToHearts() {
     
     // 2 секундтан кейін бетті ауыстыру
     setTimeout(() => {
-        window.location.href = 'heart/heart.html';
+        window.location.href = 'сердечко/heart.html';
     }, 1000);
 }
 
