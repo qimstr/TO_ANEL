@@ -1,4 +1,3 @@
-/* Негізгі стильдер */
 * {
     margin: 0;
     padding: 0;
@@ -8,14 +7,12 @@
 body {
     background: linear-gradient(135deg, #14000a 0%, #000000 100%);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
     position: relative;
-    overflow-x: hidden;
-    padding: 20px;
 }
 
 /* Жұлдызшалар фонға */
@@ -41,52 +38,37 @@ body::before {
     100% { opacity: 0.7; }
 }
 
-/* КАРТОЧКАЛАРДЫ ОРТАҒА ОРНАЛАСТЫРУ */
 .card-closed {
-    width: 100%;
-    max-width: 500px; /* Үлкенірек жасадым */
+    width: 450px;
     text-align: center;
     position: relative;
     z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
 }
 
 .card-opened {
-    width: 100%;
-    max-width: 500px; /* Үлкенірек жасадым */
+    width: 380px;
     text-align: center;
     position: relative;
     z-index: 2;
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
+    transform: scale(0.85);
+    transform-origin: center;
 }
 
-/* Конвертті ҮЛКЕНІРЕК ЖӘНЕ ОРТАҒА */
 .envelope {
     background: linear-gradient(135deg, #ff3366 0%, #ff0066 100%);
-    height: 320px; /* Биіктігін ұлғайттым */
-    width: 100%;
-    max-width: 480px; /* Енін ұлғайттым */
-    border-radius: 30px; /* Бұрыштарын дөңгелектедім */
+    height: 280px;
+    border-radius: 25px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 0 auto 40px; /* Төменгі жағына көбірек орын қалдырдым */
+    margin-bottom: 30px;
     position: relative;
     overflow: hidden;
     box-shadow: 
-        0 25px 50px rgba(255, 51, 102, 0.4),
-        inset 0 1px 0 rgba(255, 255, 255, 0.3),
-        0 0 40px rgba(255, 0, 102, 0.3);
-    border: 3px solid rgba(255, 255, 255, 0.15);
+        0 20px 40px rgba(255, 51, 102, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .envelope::before {
@@ -98,22 +80,21 @@ body::before {
     bottom: 0;
     background: radial-gradient(
         circle at 30% 30%,
-        rgba(255, 255, 255, 0.15) 0%,
+        rgba(255, 255, 255, 0.1) 0%,
         transparent 50%
     );
     pointer-events: none;
 }
 
-/* Жүректі ҮЛКЕНІРЕК */
 .envelope-heart {
-    font-size: 120px; /* Өте үлкен */
+    font-size: 90px;
     color: white;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     text-shadow: 
-        0 8px 25px rgba(0, 0, 0, 0.4),
-        0 0 40px rgba(255, 255, 255, 0.4);
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(255, 255, 255, 0.2);
     animation: heartbeat 1.8s infinite;
-    filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
 }
 
 @keyframes heartbeat {
@@ -121,43 +102,37 @@ body::before {
         transform: scale(1) rotate(0deg); 
     }
     25% { 
-        transform: scale(1.2) rotate(-8deg); /* Үлкенірек масштаб */
+        transform: scale(1.1) rotate(-5deg); 
     }
     75% { 
-        transform: scale(1.2) rotate(8deg); /* Үлкенірек масштаб */
+        transform: scale(1.1) rotate(5deg); 
     }
 }
 
-/* Мәтінді ҮЛКЕНІРЕК */
 .envelope-text {
     color: white;
-    font-size: 42px; /* Өте үлкен */
-    font-weight: 800;
-    letter-spacing: 4px;
-    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
     background: linear-gradient(to right, #ffffff, #ffe6ee);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    padding: 0 20px;
 }
 
-/* Батырмаларды ҮЛКЕНІРЕК ЖӘНЕ ОРТАҒА */
 .open-btn, .close-btn {
     width: 100%;
-    max-width: 480px; /* Батырма да конвертпен бірдей ені */
-    padding: 24px; /* Үлкенірек */
-    font-size: 26px; /* Үлкенірек */
+    padding: 20px;
+    font-size: 22px;
     font-weight: bold;
     border: none;
-    border-radius: 20px; /* Бұрыштарын дөңгелектедім */
+    border-radius: 15px;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     position: relative;
     overflow: hidden;
-    margin: 0 auto;
-    display: block;
 }
 
 .open-btn::before, .close-btn::before {
@@ -170,7 +145,7 @@ body::before {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(255, 255, 255, 0.3), /* Жарқырауын күшейттім */
+        rgba(255, 255, 255, 0.2),
         transparent
     );
     transition: left 0.5s;
@@ -184,48 +159,49 @@ body::before {
     background: linear-gradient(135deg, #ff3366, #ff1493);
     color: white;
     box-shadow: 
-        0 15px 40px rgba(255, 51, 102, 0.5),
-        0 0 30px rgba(255, 20, 147, 0.4);
-    border: 3px solid rgba(255, 255, 255, 0.2);
+        0 10px 30px rgba(255, 51, 102, 0.4),
+        0 0 20px rgba(255, 20, 147, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
 .open-btn:hover {
-    transform: translateY(-8px) scale(1.03); /* Үлкенірек көтерілу */
+    transform: translateY(-6px) scale(1.02);
     box-shadow: 
-        0 20px 50px rgba(255, 51, 102, 0.7),
-        0 0 40px rgba(255, 20, 147, 0.6);
+        0 15px 40px rgba(255, 51, 102, 0.6),
+        0 0 30px rgba(255, 20, 147, 0.4);
 }
 
 .close-btn {
     background: linear-gradient(135deg, #6c757d, #495057);
     color: white;
-    margin-top: 30px; /* Көбірек орын */
-    box-shadow: 0 12px 35px rgba(108, 117, 125, 0.5);
-    border: 3px solid rgba(255, 255, 255, 0.1);
+    margin-top: 25px;
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.05);
 }
 
 .close-btn:hover {
     background: linear-gradient(135deg, #495057, #343a40);
-    transform: translateY(-6px); /* Үлкенірек көтерілу */
-    box-shadow: 0 18px 40px rgba(108, 117, 125, 0.6);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(108, 117, 125, 0.5);
 }
 
-/* Хатты ҮЛКЕНІРЕК ЖӘНЕ ОРТАҒА */
+.card-opened {
+    display: none;
+}
+
 .letter {
     background: linear-gradient(135deg, 
-        rgba(25, 0, 15, 0.95) 0%, 
-        rgba(10, 0, 5, 0.92) 100%);
-    border-radius: 30px; /* Бұрыштарын дөңгелектедім */
-    padding: 40px 35px; /* Көбірек паддинг */
-    margin: 0 auto 30px;
+        rgba(20, 0, 10, 0.9) 0%, 
+        rgba(0, 0, 0, 0.85) 100%);
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 20px;
     position: relative;
     overflow: hidden;
     box-shadow: 
-        0 30px 60px rgba(0, 0, 0, 0.7),
-        inset 0 1px 0 rgba(255, 255, 255, 0.15);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    width: 100%;
-    max-width: 480px; /* Конвертпен бірдей ені */
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .letter::before {
@@ -234,7 +210,7 @@ body::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 6px; /* Үлкенірек */
+    height: 4px;
     background: linear-gradient(
         90deg,
         transparent,
@@ -248,19 +224,19 @@ body::before {
 .letter::after {
     content: '';
     position: absolute;
-    top: 15px; /* Көбірек орын */
-    left: 15px; /* Көбірек орын */
-    right: 15px; /* Көбірек орын */
-    bottom: 15px; /* Көбірек орын */
-    border: 2px solid rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
     pointer-events: none;
 }
 
 .letter-header {
     text-align: center;
-    margin-bottom: 30px; /* Көбірек орын */
-    padding-bottom: 25px; /* Көбірек орын */
+    margin-bottom: 25px;
+    padding-bottom: 20px;
     position: relative;
 }
 
@@ -268,9 +244,9 @@ body::before {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 20%;
-    right: 20%;
-    height: 3px; /* Үлкенірек */
+    left: 25%;
+    right: 25%;
+    height: 2px;
     background: linear-gradient(
         90deg,
         transparent,
@@ -281,12 +257,11 @@ body::before {
     );
 }
 
-/* Тақырыпты ҮЛКЕНІРЕК */
 .letter-header h2 {
     color: #ff3366;
-    font-size: 36px; /* Өте үлкен */
-    margin-bottom: 15px;
-    text-shadow: 0 3px 20px rgba(255, 51, 102, 0.5);
+    font-size: 28px;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(255, 51, 102, 0.3);
     background: linear-gradient(to right, #ff3366, #ff1493);
     -webkit-background-clip: text;
     background-clip: text;
@@ -294,68 +269,67 @@ body::before {
 }
 
 .valentine-date {
-    color: rgba(255, 255, 255, 0.85);
-    font-size: 20px; /* Үлкенірек */
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
     font-style: italic;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
 }
 
 .letter-content {
     text-align: left;
+
 }
 
-/* Қолжазба мәтінін ҮЛКЕНІРЕК */
 .handwriting {
     font-family: 'Brush Script MT', cursive;
-    font-size: 28px; /* Өте үлкен */
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 20px;
-    line-height: 1.6;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .wishes {
-    margin: 30px 0;
+    margin: 25px 0;
     padding: 0;
 }
 
 .wish {
     font-family: 'Brush Script MT', cursive;
-    font-size: 22px; /* Үлкенірек */
-    color: rgba(255, 255, 255, 0.9);
-    margin-bottom: 12px;
-    line-height: 1.5;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 8px;
+    line-height: 1.4;
     padding-left: 0;
 }
 
-/* Tap me батырмасын ҮЛКЕНІРЕК */
 .tap-btn {
     display: block;
     width: 100%;
-    padding: 22px; /* Үлкенірек */
+    padding: 16px;
     background: linear-gradient(135deg, #ff3366, #ff0066);
     color: white;
     border: none;
-    border-radius: 18px; /* Бұрыштарын дөңгелектедім */
-    font-size: 22px; /* Үлкенірек */
+    border-radius: 12px;
+    font-size: 18px;
     font-weight: bold;
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 
-        0 15px 40px rgba(255, 51, 102, 0.6),
-        0 0 30px rgba(255, 0, 102, 0.4);
+        0 8px 25px rgba(255, 51, 102, 0.5),
+        0 0 20px rgba(255, 0, 102, 0.3);
     position: relative;
     overflow: hidden;
-    letter-spacing: 2px;
-    border: 3px solid rgba(255, 255, 255, 0.15);
-    margin-top: 30px;
+    letter-spacing: 1px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
 }
 
 .tap-btn:hover {
-    transform: translateY(-7px); /* Үлкенірек көтерілу */
+    transform: translateY(-5px);
     box-shadow: 
-        0 22px 50px rgba(255, 51, 102, 0.8),
-        0 0 40px rgba(255, 0, 102, 0.6);
+        0 15px 35px rgba(255, 51, 102, 0.7),
+        0 0 30px rgba(255, 0, 102, 0.5);
     background: linear-gradient(135deg, #ff0066, #ff3366);
 }
 
@@ -363,7 +337,7 @@ body::before {
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(20px) scale(0.95);
     }
     to {
         opacity: 1;
@@ -374,11 +348,11 @@ body::before {
 @keyframes fadeInMedium {
     from {
         opacity: 0;
-        transform: translateY(30px) scale(0.95);
+        transform: translateY(20px) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0) scale(0.85);
     }
 }
 
@@ -390,157 +364,83 @@ body::before {
     animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* iPhone 14 үшін арнайы стильдер */
-@media (max-width: 430px) {
-    body {
-        padding: 15px;
-        justify-content: flex-start;
-        min-height: -webkit-fill-available; /* iOS Safari үшін */
+/* Адаптивтілік */
+@media (max-width: 500px) {
+    .card-closed {
+        width: 90vw;
+        padding: 0 10px;
     }
     
-    .card-closed, .card-opened {
-        max-width: 100%;
-        width: 100%;
+    .card-opened {
+        width: 76vw;
     }
     
     .envelope {
-        height: 280px;
-        max-width: 100%;
-        border-radius: 25px;
-        margin-bottom: 35px;
+        height: 220px;
     }
     
     .envelope-heart {
-        font-size: 100px;
-        margin-bottom: 25px;
+        font-size: 70px;
     }
     
     .envelope-text {
-        font-size: 36px;
-        letter-spacing: 3px;
-        padding: 0 15px;
-    }
-    
-    .open-btn, .close-btn {
-        max-width: 100%;
-        padding: 22px;
-        font-size: 24px;
-        border-radius: 18px;
+        font-size: 26px;
     }
     
     .letter {
-        max-width: 100%;
-        padding: 35px 30px;
-        border-radius: 25px;
-        margin-bottom: 25px;
+        padding: 20px;
     }
     
     .letter-header h2 {
-        font-size: 32px;
-    }
-    
-    .valentine-date {
-        font-size: 18px;
-    }
-    
-    .handwriting {
-        font-size: 26px;
-        line-height: 1.5;
-    }
-    
-    .wish {
-        font-size: 20px;
-    }
-    
-    .tap-btn {
-        padding: 20px;
-        font-size: 20px;
-        border-radius: 16px;
-    }
-    
-    .close-btn {
-        margin-top: 25px;
-    }
-}
-
-/* Кіші экрандар үшін */
-@media (max-width: 380px) {
-    .envelope {
-        height: 260px;
-    }
-    
-    .envelope-heart {
-        font-size: 90px;
-    }
-    
-    .envelope-text {
-        font-size: 32px;
-    }
-    
-    .handwriting {
         font-size: 24px;
     }
     
-    .open-btn, .close-btn {
-        font-size: 22px;
-        padding: 20px;
-    }
-}
-
-/* Экран тік болғанда */
-@media (max-height: 700px) {
-    body {
-        padding-top: 30px;
-        padding-bottom: 30px;
-        overflow-y: auto;
-    }
-    
-    .envelope {
-        height: 250px;
-        margin-bottom: 30px;
-    }
-    
-    .envelope-heart {
-        font-size: 90px;
-        margin-bottom: 20px;
-    }
-}
-
-/* Көлденең экран үшін */
-@media (min-width: 1000px) and (min-height: 800px) {
-    .card-closed, .card-opened {
-        max-width: 550px;
-    }
-    
-    .envelope {
-        height: 350px;
-        max-width: 520px;
-    }
-    
-    .envelope-heart {
-        font-size: 140px;
-    }
-    
-    .envelope-text {
-        font-size: 46px;
-    }
-    
     .handwriting {
-        font-size: 32px;
+        font-size: 20px;
+    }
+    
+    .wish {
+        font-size: 16px;
+    }
+    
+    .open-btn, .close-btn {
+        padding: 16px;
+        font-size: 18px;
+    }
+    
+    .tap-btn {
+        padding: 14px;
+        font-size: 16px;
     }
 }
-
-/* Дұрыс ортаға орналастыру үшін */
-html, body {
-    width: 100%;
-    height: 100%;
+.card-opened {
+    /* Можно регулировать ширину и высоту */
+    width: 500px; /* Измени на нужную ширину */
+    max-width: 90%; /* Чтобы адаптировалось на мобильных */
+}
+ 
+.letter {
+    /* Регулируй отступы внутри письма */
+    padding: 40px 35px; /* Увеличил отступы */
+    width: 100%; /* Занимает всю доступную ширину */
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100%;
+.letter-content.handwriting {
+    /* Стили для текстового блока */
+    min-height: 200px; /* Минимальная высота */
+    max-height: 300px; /* Максимальная высота */
+    overflow-y: auto; /* Прокрутка если текст не помещается */
+    padding: 15px;
+    margin: 20px 0;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.close-btn {
+    /* Позиционирование кнопки CLOSE */
+    position: absolute;
+    bottom: -60px;
+    right: 0px;
+    margin-top: 20px;
 }
