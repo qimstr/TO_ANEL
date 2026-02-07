@@ -1,9 +1,48 @@
 function openCard() {
     const closedCard = document.getElementById('closedCard');
     const openedCard = document.getElementById('openedCard');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    
+    // Конверт ашылу анимациясы
+    envelopeContainer.classList.add('open');
     
     // Жұлдызшалар эффектісі
     createStars(15);
+    
+    // 0.8 секундтан кейін (конверт ашылып болғаннан кейін)
+    setTimeout(() => {
+        closedCard.style.display = 'none';
+        openedCard.style.display = 'block';
+        
+        // Анимация ашу
+        setTimeout(() => {
+            openedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+            openedCard.style.opacity = '1';
+        }, 10);
+    }, 800);
+}
+
+function closeCard() {
+    const closedCard = document.getElementById('closedCard');
+    const openedCard = document.getElementById('openedCard');
+    const envelopeContainer = document.getElementById('envelopeContainer');
+    
+    // Конверт жабылу анимациясы
+    envelopeContainer.classList.remove('open');
+    
+    // Жұлдызшалар эффектісі
+    createStars(10);
+    
+    openedCard.style.display = 'none';
+    closedCard.style.display = 'block';
+    
+    // Анимация ашу
+    setTimeout(() => {
+        closedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
+        closedCard.style.opacity = '1';
+    }, 10);
+}
+
     
     // Жабық карточканы жасыру
     closedCard.style.animation = 'none';
@@ -201,3 +240,4 @@ setInterval(() => {
         createStars(3);
     }
 }, 3000);
+
