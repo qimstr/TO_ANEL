@@ -1,4 +1,3 @@
-/* Негізгі стильдер */
 * {
     margin: 0;
     padding: 0;
@@ -278,6 +277,7 @@ body::before {
 
 .letter-content {
     text-align: left;
+
 }
 
 .handwriting {
@@ -364,99 +364,7 @@ body::before {
     animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* iPhone 14 (430px) үшін арнайы стильдер - 2 ЕСЕ ҮЛКЕН */
-@media (max-width: 430px) {
-    body {
-        padding: 15px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-    }
-    
-    .card-closed {
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-        margin: 0 auto;
-    }
-    
-    .card-opened {
-        width: 100%;
-        max-width: 400px;
-        text-align: center;
-        margin: 0 auto;
-        transform: scale(1); /* Масштабты қайтарамыз */
-    }
-    
-    .envelope {
-        height: 320px; /* Үлкенірек */
-        border-radius: 30px; /* Дөңгелектедік */
-        margin-bottom: 35px;
-        width: 100%;
-    }
-    
-    .envelope-heart {
-        font-size: 120px; /* 2 ЕСЕ ҮЛКЕН (90px → 120px) */
-        margin-bottom: 30px;
-    }
-    
-    .envelope-text {
-        font-size: 42px; /* 2 ЕСЕ ҮЛКЕН (32px → 42px) */
-        letter-spacing: 4px;
-    }
-    
-    .open-btn, .close-btn {
-        padding: 24px; /* Үлкенірек */
-        font-size: 26px; /* Үлкенірек */
-        border-radius: 20px; /* Дөңгелектедік */
-        width: 100%;
-    }
-    
-    .letter {
-        padding: 35px 30px; /* Үлкенірек */
-        border-radius: 30px; /* Дөңгелектедік */
-        margin-bottom: 25px;
-        width: 100%;
-    }
-    
-    .letter-header h2 {
-        font-size: 36px; /* ҮЛКЕНІРЕК (28px → 36px) */
-        margin-bottom: 15px;
-    }
-    
-    .valentine-date {
-        font-size: 20px; /* Үлкенірек */
-    }
-    
-    .handwriting {
-        font-size: 28px; /* 2 ЕСЕ ҮЛКЕН (22px → 28px) */
-        line-height: 1.6;
-        margin-bottom: 20px;
-    }
-    
-    .handwriting p {
-        text-align: center;
-    }
-    
-    .wish {
-        font-size: 22px; /* Үлкенірек */
-        margin-bottom: 12px;
-    }
-    
-    .tap-btn {
-        padding: 20px; /* Үлкенірек */
-        font-size: 22px; /* Үлкенірек */
-        border-radius: 18px; /* Дөңгелектедік */
-        margin-top: 25px;
-    }
-    
-    .close-btn {
-        margin-top: 25px;
-    }
-}
-
-/* Басқа экрандар үшін (500px) - БАЯҒЫДАҒЫ КҮЙІНДЕ */
+/* Адаптивтілік */
 @media (max-width: 500px) {
     .card-closed {
         width: 90vw;
@@ -505,5 +413,34 @@ body::before {
         font-size: 16px;
     }
 }
+.card-opened {
+    /* Можно регулировать ширину и высоту */
+    width: 500px; /* Измени на нужную ширину */
+    max-width: 90%; /* Чтобы адаптировалось на мобильных */
+}
+ 
+.letter {
+    /* Регулируй отступы внутри письма */
+    padding: 40px 35px; /* Увеличил отступы */
+    width: 100%; /* Занимает всю доступную ширину */
+}
 
-/* Тек iPhone 14 үшін арнайы стильдер (430px) бар, қалғаны барлығы баяғыдай */
+.letter-content.handwriting {
+    /* Стили для текстового блока */
+    min-height: 200px; /* Минимальная высота */
+    max-height: 300px; /* Максимальная высота */
+    overflow-y: auto; /* Прокрутка если текст не помещается */
+    padding: 15px;
+    margin: 20px 0;
+    text-align: left;
+    line-height: 1.6;
+    font-size: 18px;
+}
+
+.close-btn {
+    /* Позиционирование кнопки CLOSE */
+    position: absolute;
+    bottom: -60px;
+    right: 0px;
+    margin-top: 20px;
+}
