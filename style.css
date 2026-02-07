@@ -1,8 +1,9 @@
-/* Негізгі стильдер */
+/* НЕГІЗГІ СТИЛЬДЕР */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
 }
 
 html, body {
@@ -49,7 +50,7 @@ body::before {
     100% { opacity: 0.7; }
 }
 
-/* НЕГІЗГІ КОНТЕЙНЕР - ОРТАДА ҚАТАЙЫП ТҰРАДЫ */
+/* НЕГІЗГІ КОНТЕЙНЕР - ОРТАДА ТҰРАДЫ */
 .main-container {
     position: fixed;
     top: 50%;
@@ -62,12 +63,12 @@ body::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 20px;
 }
 
 /* ЖАБЫҚ КАРТА - ОРТАДА ТҰРАДЫ */
 .card-closed {
     width: 100%;
-    max-width: 450px;
     text-align: center;
     position: relative;
     margin: 0 auto;
@@ -76,7 +77,6 @@ body::before {
 /* АШЫҚ КАРТА - ОРТАДА ТҰРАДЫ */
 .card-opened {
     width: 100%;
-    max-width: 450px;
     text-align: center;
     position: relative;
     display: none;
@@ -395,12 +395,13 @@ body::before {
 }
 
 /* iPhone 14 Pro және БАРЛЫҚ ТЕЛЕФОНДАР ҮШІН - 2 ЕСЕ ҮЛКЕН ЖӘНЕ ОРТАДА */
-@media (max-width: 500px) {
+@media (max-width: 768px) {
     html, body {
         overflow: hidden;
         position: fixed;
         width: 100vw;
         height: 100vh;
+        touch-action: none;
     }
     
     .main-container {
@@ -412,26 +413,15 @@ body::before {
         max-width: 95vw;
         height: auto;
         padding: 10px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
     }
     
-    .card-closed {
+    .card-closed, .card-opened {
         width: 100%;
         max-width: 100%;
-        text-align: center;
-        position: relative;
         margin: 0;
     }
     
     .card-opened {
-        width: 100%;
-        max-width: 100%;
-        text-align: center;
-        position: relative;
-        margin: 0;
         transform: scale(1) !important;
     }
     
@@ -439,7 +429,6 @@ body::before {
         height: 320px; /* 2 ЕСЕ ҮЛКЕН */
         border-radius: 30px;
         margin-bottom: 30px;
-        width: 100%;
     }
     
     .envelope-heart {
@@ -457,14 +446,12 @@ body::before {
         padding: 22px; /* 2 ЕСЕ ҮЛКЕН */
         font-size: 26px; /* 2 ЕСЕ ҮЛКЕН */
         border-radius: 20px;
-        width: 100%;
     }
     
     .letter {
         padding: 35px 25px; /* Үлкенірек */
         border-radius: 30px;
         margin-bottom: 25px;
-        width: 100%;
     }
     
     .letter-header h2 {
@@ -481,11 +468,6 @@ body::before {
         line-height: 1.6;
         margin-bottom: 20px;
         text-align: center;
-    }
-    
-    .handwriting p {
-        text-align: center;
-        margin: 0 auto;
     }
     
     .wish {
@@ -505,41 +487,6 @@ body::before {
     }
 }
 
-/* Кіші экрандар үшін */
-@media (max-width: 380px) {
-    .envelope {
-        height: 300px;
-    }
-    
-    .envelope-heart {
-        font-size: 110px;
-    }
-    
-    .envelope-text {
-        font-size: 38px;
-    }
-    
-    .handwriting {
-        font-size: 26px;
-    }
-}
-
-/* Экран тік болғанда */
-@media (max-height: 700px) {
-    .main-container {
-        transform: translate(-50%, -50%) scale(0.9);
-    }
-    
-    .envelope {
-        height: 280px;
-        margin-bottom: 25px;
-    }
-    
-    .envelope-heart {
-        font-size: 100px;
-    }
-}
-
 /* iOS Safari үшін арнайы стильдер */
 @supports (-webkit-touch-callout: none) {
     body {
@@ -548,5 +495,12 @@ body::before {
     
     .main-container {
         max-height: -webkit-fill-available;
+    }
+}
+
+/* Үлкен экрандар үшін (ноутбук) */
+@media (min-width: 769px) {
+    .main-container {
+        max-width: 450px;
     }
 }
