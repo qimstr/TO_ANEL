@@ -38,9 +38,9 @@ body::before {
     100% { opacity: 0.7; }
 }
 
-/* КАРТОЧКАЛАРДЫ ОРТАҒА ҚОЮ */
+/* ==================== ЕНІН ҮЛКЕЙТУ ==================== */
 .card-closed {
-    width: 650px;
+    width: 550px; /* ҮЛКЕЙТІЛДІ: 450px → 550px */
     text-align: center;
     position: relative;
     z-index: 2;
@@ -52,7 +52,7 @@ body::before {
 }
 
 .card-opened {
-    width: 380px;
+    width: 500px; /* ҮЛКЕЙТІЛДІ: 380px → 500px */
     text-align: center;
     position: relative;
     z-index: 2;
@@ -65,6 +65,7 @@ body::before {
     transform: translate(-50%, -50%) scale(0.85);
 }
 
+/* КОНВЕРТТІ ҮЛКЕЙТУ */
 .envelope {
     background: linear-gradient(135deg, #ff3366 0%, #ff0066 100%);
     height: 280px;
@@ -375,19 +376,69 @@ body::before {
     animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* АДАПТИВТІЛІК */
-@media (max-width: 500px) {
+/* ==================== АДАПТИВТІЛІК ==================== */
+@media (max-width: 768px) {
+    /* ПЛАНШЕТ ЖӘНЕ ТЕЛЕФОН */
     .card-closed {
-        width: 90vw;
+        width: 85vw !important; /* ҮЛКЕЙТІЛДІ */
+        max-width: 500px !important;
+        padding: 0 15px;
+    }
+    
+    .card-opened {
+        width: 80vw !important; /* ҮЛКЕЙТІЛДІ */
+        max-width: 450px !important;
+    }
+    
+    .envelope {
+        height: 250px; /* БІРАЗ ҮЛКЕЙТІЛДІ */
+    }
+    
+    .envelope-heart {
+        font-size: 80px;
+    }
+    
+    .envelope-text {
+        font-size: 28px;
+    }
+    
+    .letter {
+        padding: 25px;
+    }
+    
+    .letter-header h2 {
+        font-size: 26px;
+    }
+    
+    .handwriting {
+        font-size: 21px;
+    }
+    
+    .open-btn, .close-btn {
+        padding: 18px;
+        font-size: 20px;
+    }
+    
+    .tap-btn {
+        padding: 15px;
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 500px) {
+    /* КІШІ ТЕЛЕФОНДАР */
+    .card-closed {
+        width: 90vw !important; /* ӨТЕ ҮЛКЕН */
         padding: 0 10px;
     }
     
     .card-opened {
-        width: 76vw;
+        width: 85vw !important; /* ӨТЕ ҮЛКЕН */
+        transform: translate(-50%, -50%) scale(0.9) !important; /* Масштабты өзгерту */
     }
     
     .envelope {
-        height: 220px;
+        height: 230px;
     }
     
     .envelope-heart {
@@ -427,7 +478,6 @@ body::before {
 
 /* ============================= */
 /* iOS ҮШІН ТЕК ОРТАҒА ҚОЮ ЖӘНЕ ҮЛКЕЙТУ */
-/* Басқа ештеңені өзгертпейді! */
 /* ============================= */
 
 /* iOS-ТЕ ҮЛКЕЙТУ (ТЕЛЕФОНДА КІШІ БОЛМАУ ҮШІН) */
@@ -470,6 +520,15 @@ body::before {
     .letter-header h2 {
         font-size: 28px !important;
     }
+    
+    /* КАРТОЧКА ЕНІН ӨТЕ ҮЛКЕН ЕТУ (iPhone) */
+    .card-closed {
+        width: 92vw !important;
+    }
+    
+    .card-opened {
+        width: 88vw !important;
+    }
 }
 
 /* iOS SAFARI АРНАЙЫ ТҮЗЕТУ */
@@ -486,3 +545,35 @@ body::before {
     }
 }
 
+/* НОУТБУК ЖӘНЕ ПК ҮШІН ТЕҢ ҮЛКЕН ЕТУ */
+@media (min-width: 1200px) {
+    .card-closed {
+        width: 600px !important; /* НОУТБУКТА ӨТЕ ҮЛКЕН */
+    }
+    
+    .card-opened {
+        width: 550px !important; /* НОУТБУКТА ӨТЕ ҮЛКЕН */
+        transform: translate(-50%, -50%) scale(0.9) !important;
+    }
+    
+    .envelope {
+        height: 320px !important; /* ҮЛКЕЙТІЛДІ */
+    }
+    
+    .envelope-heart {
+        font-size: 110px !important; /* ҮЛКЕЙТІЛДІ */
+    }
+    
+    .envelope-text {
+        font-size: 38px !important; /* ҮЛКЕЙТІЛДІ */
+    }
+    
+    .letter {
+        padding: 40px !important; /* ҮЛКЕЙТІЛДІ */
+    }
+    
+    .handwriting {
+        font-size: 26px !important; /* ҮЛКЕЙТІЛДІ */
+        line-height: 1.6 !important;
+    }
+}
