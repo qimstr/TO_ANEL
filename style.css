@@ -1,299 +1,487 @@
-/* 
-  iOS ҮШІН ТОЛЫҚ ТҮЗЕТУ
-  - Бәрін ортаға шығару
-  - Карточканы үлкейту (телефонда кіші болмау үшін)
-  - Кнопкаларды үлкен ету
-*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* 1. БҮКІЛ БЕДІ ҚАЙТА БАПТАУ */
 body {
-    margin: 0 !important;
-    padding: 0 !important;
-    width: 100vw !important;
-    height: 100vh !important;
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
-    overflow: hidden !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    background: linear-gradient(135deg, #14000a 0%, #000000 100%) !important;
+    background: linear-gradient(135deg, #14000a 0%, #000000 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+    position: relative;
 }
 
-/* 2. ЖАБЫҚ КАРТОЧКА - ОРТАДА ЖӘНЕ ҮЛКЕН */
+/* Жұлдызшалар фонға */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        radial-gradient(circle at 60% 70%, rgba(255, 255, 255, 0.08) 1px, transparent 1px),
+        radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 150px 150px, 200px 200px, 180px 180px;
+    z-index: 1;
+    pointer-events: none;
+    animation: twinkle 8s infinite alternate;
+}
+
+@keyframes twinkle {
+    0% { opacity: 0.3; }
+    100% { opacity: 0.7; }
+}
+
+/* КАРТОЧКАЛАРДЫ ОРТАҒА ҚОЮ */
 .card-closed {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90% !important;
-    max-width: 500px !important;
-    z-index: 1000 !important;
-    text-align: center !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
+    width: 450px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    /* ОРТАҒА ҚОЮ ӨЗГЕРТУІ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
-/* 3. КОНВЕРТТІ ҮЛКЕЙТУ */
-.envelope {
-    width: 100% !important;
-    height: 350px !important;
-    margin-bottom: 40px !important;
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-}
-
-/* 4. ЖҮРЕКТІ ҮЛКЕЙТУ */
-.envelope-heart {
-    font-size: 140px !important;
-    margin-bottom: 30px !important;
-}
-
-/* 5. КОНВЕРТ МӘТІНІ */
-.envelope-text {
-    font-size: 40px !important;
-    font-weight: bold !important;
-}
-
-/* 6. АШУ КНОПКАСЫ */
-.open-btn {
-    width: 100% !important;
-    padding: 25px !important;
-    font-size: 28px !important;
-    min-height: 70px !important;
-    border-radius: 20px !important;
-}
-
-/* 7. АШЫҚ КАРТОЧКА - ОРТАДА ЖӘНЕ ӨТЕ ҮЛКЕН */
 .card-opened {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90% !important;
-    max-width: 650px !important;
-    min-height: 700px !important;
-    z-index: 1000 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    align-items: center !important;
-    padding: 20px !important;
+    width: 380px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+    transform: scale(0.85);
+    transform-origin: center;
+    /* ОРТАҒА ҚОЮ ӨЗГЕРТУІ */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.85);
 }
 
-/* 8. ХАТ БӨЛІМІ */
+.envelope {
+    background: linear-gradient(135deg, #ff3366 0%, #ff0066 100%);
+    height: 280px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 40px rgba(255, 51, 102, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.envelope::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+        circle at 30% 30%,
+        rgba(255, 255, 255, 0.1) 0%,
+        transparent 50%
+    );
+    pointer-events: none;
+}
+
+.envelope-heart {
+    font-size: 90px;
+    color: white;
+    margin-bottom: 20px;
+    text-shadow: 
+        0 5px 15px rgba(0, 0, 0, 0.3),
+        0 0 30px rgba(255, 255, 255, 0.2);
+    animation: heartbeat 1.8s infinite;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+}
+
+@keyframes heartbeat {
+    0%, 100% { 
+        transform: scale(1) rotate(0deg); 
+    }
+    25% { 
+        transform: scale(1.1) rotate(-5deg); 
+    }
+    75% { 
+        transform: scale(1.1) rotate(5deg); 
+    }
+}
+
+.envelope-text {
+    color: white;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(to right, #ffffff, #ffe6ee);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.open-btn, .close-btn {
+    width: 100%;
+    padding: 20px;
+    font-size: 22px;
+    font-weight: bold;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+.open-btn::before, .close-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: left 0.5s;
+}
+
+.open-btn:hover::before, .close-btn:hover::before {
+    left: 100%;
+}
+
+.open-btn {
+    background: linear-gradient(135deg, #ff3366, #ff1493);
+    color: white;
+    box-shadow: 
+        0 10px 30px rgba(255, 51, 102, 0.4),
+        0 0 20px rgba(255, 20, 147, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.open-btn:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 
+        0 15px 40px rgba(255, 51, 102, 0.6),
+        0 0 30px rgba(255, 20, 147, 0.4);
+}
+
+.close-btn {
+    background: linear-gradient(135deg, #6c757d, #495057);
+    color: white;
+    margin-top: 25px;
+    box-shadow: 0 8px 25px rgba(108, 117, 125, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.05);
+}
+
+.close-btn:hover {
+    background: linear-gradient(135deg, #495057, #343a40);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 35px rgba(108, 117, 125, 0.5);
+}
+
+.card-opened {
+    display: none;
+}
+
 .letter {
-    width: 100% !important;
-    min-height: 550px !important;
-    padding: 40px !important;
-    margin-bottom: 30px !important;
-    display: flex !important;
-    flex-direction: column !important;
+    background: linear-gradient(135deg, 
+        rgba(20, 0, 10, 0.9) 0%, 
+        rgba(0, 0, 0, 0.85) 100%);
+    border-radius: 25px;
+    padding: 30px;
+    margin-bottom: 20px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 20px 50px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* 9. ХАТ ТАҚЫРЫБЫ */
+.letter::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff3366,
+        #ff1493,
+        #ff3366,
+        transparent
+    );
+}
+
+.letter::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: 15px;
+    pointer-events: none;
+}
+
 .letter-header {
-    margin-bottom: 30px !important;
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.letter-header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 25%;
+    right: 25%;
+    height: 2px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ff3366,
+        #ff1493,
+        #ff3366,
+        transparent
+    );
 }
 
 .letter-header h2 {
-    font-size: 42px !important;
-    margin-bottom: 20px !important;
+    color: #ff3366;
+    font-size: 28px;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 10px rgba(255, 51, 102, 0.3);
+    background: linear-gradient(to right, #ff3366, #ff1493);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
 }
 
 .valentine-date {
-    font-size: 24px !important;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 16px;
+    font-style: italic;
+    letter-spacing: 1px;
 }
 
-/* 10. НЕГІЗГІ МӘТІН - ӨТЕ ҮЛКЕН */
-.letter-content.handwriting {
-    font-size: 32px !important;
-    line-height: 1.8 !important;
-    flex-grow: 1 !important;
-    padding: 20px !important;
-    text-align: justify !important;
-    color: white !important;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.5) !important;
-    overflow-y: auto !important;
-    max-height: 350px !important;
-    margin: 20px 0 !important;
+.letter-content {
+    text-align: left;
+
 }
 
-/* 11. ТАП КНОПКАСЫ */
+.handwriting {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 22px;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 12px;
+    line-height: 1.4;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wishes {
+    margin: 25px 0;
+    padding: 0;
+}
+
+.wish {
+    font-family: 'Brush Script MT', cursive;
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 8px;
+    line-height: 1.4;
+    padding-left: 0;
+}
+
 .tap-btn {
-    width: 100% !important;
-    padding: 25px !important;
-    font-size: 26px !important;
-    min-height: 70px !important;
-    border-radius: 20px !important;
-    margin-top: 30px !important;
+    display: block;
+    width: 100%;
+    padding: 16px;
+    background: linear-gradient(135deg, #ff3366, #ff0066);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 
+        0 8px 25px rgba(255, 51, 102, 0.5),
+        0 0 20px rgba(255, 0, 102, 0.3);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 1px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    margin-top: 20px;
 }
 
-/* 12. ЖАБУ КНОПКАСЫ */
-.close-btn {
-    width: 100% !important;
-    max-width: 500px !important;
-    padding: 25px !important;
-    font-size: 28px !important;
-    min-height: 70px !important;
-    border-radius: 20px !important;
-    margin-top: 20px !important;
+.tap-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 
+        0 15px 35px rgba(255, 51, 102, 0.7),
+        0 0 30px rgba(255, 0, 102, 0.5);
+    background: linear-gradient(135deg, #ff0066, #ff3366);
 }
 
-/* 13. МОБИЛЬДІ ЭКРАНДАР ҮШІН */
-@media screen and (max-width: 768px) {
-    /* Жабық карточка */
-    .card-closed {
-        width: 95% !important;
-    }
-    
-    .envelope {
-        height: 300px !important;
-    }
-    
-    .envelope-heart {
-        font-size: 120px !important;
-    }
-    
-    .envelope-text {
-        font-size: 36px !important;
-    }
-    
-    /* Ашық карточка */
-    .card-opened {
-        width: 95% !important;
-        min-height: 650px !important;
-    }
-    
-    .letter {
-        min-height: 500px !important;
-        padding: 30px !important;
-    }
-    
-    .letter-header h2 {
-        font-size: 36px !important;
-    }
-    
-    .letter-content.handwriting {
-        font-size: 28px !important;
-        line-height: 1.6 !important;
-    }
-    
-    /* Кнопкалар */
-    .open-btn, .close-btn, .tap-btn {
-        padding: 22px !important;
-        font-size: 24px !important;
-        min-height: 65px !important;
-    }
-}
-
-/* 14. КІШІ ЭКРАНДАР ҮШІН (iPhone SE, iPhone 8) */
-@media screen and (max-width: 375px) {
-    .card-closed {
-        width: 96% !important;
-    }
-    
-    .envelope {
-        height: 280px !important;
-    }
-    
-    .envelope-heart {
-        font-size: 100px !important;
-    }
-    
-    .envelope-text {
-        font-size: 32px !important;
-    }
-    
-    .card-opened {
-        width: 96% !important;
-        min-height: 600px !important;
-    }
-    
-    .letter {
-        min-height: 450px !important;
-        padding: 25px !important;
-    }
-    
-    .letter-header h2 {
-        font-size: 32px !important;
-    }
-    
-    .letter-content.handwriting {
-        font-size: 26px !important;
-        line-height: 1.5 !important;
-    }
-    
-    .open-btn, .close-btn, .tap-btn {
-        padding: 20px !important;
-        font-size: 22px !important;
-        min-height: 60px !important;
-    }
-}
-
-/* 15. iOS SAFARI АРНАЙЫ ТҮЗЕТУЛЕР */
-@supports (-webkit-touch-callout: none) {
-    body {
-        height: -webkit-fill-available !important;
-    }
-    
-    /* Жер басу аймағын жақсарту */
-    button {
-        cursor: pointer !important;
-        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.4) !important;
-    }
-    
-    /* Прокрутканы жақсарту */
-    .letter-content.handwriting {
-        -webkit-overflow-scrolling: touch !important;
-    }
-    
-    /* iOS адрес жолағын есепке алу */
-    @media (max-height: 800px) {
-        .card-opened {
-            min-height: 550px !important;
-        }
-        
-        .letter {
-            min-height: 420px !important;
-        }
-        
-        .letter-content.handwriting {
-            max-height: 280px !important;
-        }
-    }
-}
-
-/* 16. АНИМАЦИЯЛАР */
-@keyframes iosFadeIn {
+/* Анимациялар */
+@keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.9) !important;
+        transform: translate(-50%, -50%) scale(0.95);
     }
     to {
         opacity: 1;
-        transform: translate(-50%, -50%) scale(1) !important;
+        transform: translate(-50%, -50%) scale(1);
     }
 }
 
-.card-closed, .card-opened {
-    animation: iosFadeIn 0.5s ease-out !important;
+@keyframes fadeInMedium {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(0.85);
+    }
 }
 
-/* 17. БАРЛЫҚ ЭЛЕМЕНТТЕРДІ КӨРСЕТУ ҮШІН */
-.card-closed, .card-opened {
-    opacity: 1 !important;
-    visibility: visible !important;
+.card-closed {
+    animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* 18. ЖАБЫҚ КАРТОЧКА КӨРІНБЕЙТІН БОЛСА */
-.card-closed[style*="display: none"] {
-    display: none !important;
+.card-opened {
+    animation: fadeInMedium 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.card-opened[style*="display: none"] {
-    display: none !important;
+/* АДАПТИВТІЛІК */
+@media (max-width: 500px) {
+    .card-closed {
+        width: 90vw;
+        padding: 0 10px;
+    }
+    
+    .card-opened {
+        width: 76vw;
+    }
+    
+    .envelope {
+        height: 220px;
+    }
+    
+    .envelope-heart {
+        font-size: 70px;
+    }
+    
+    .envelope-text {
+        font-size: 26px;
+    }
+    
+    .letter {
+        padding: 20px;
+    }
+    
+    .letter-header h2 {
+        font-size: 24px;
+    }
+    
+    .handwriting {
+        font-size: 20px;
+    }
+    
+    .wish {
+        font-size: 16px;
+    }
+    
+    .open-btn, .close-btn {
+        padding: 16px;
+        font-size: 18px;
+    }
+    
+    .tap-btn {
+        padding: 14px;
+        font-size: 16px;
+    }
+}
+
+/* ============================= */
+/* iOS ҮШІН ТЕК ОРТАҒА ҚОЮ ЖӘНЕ ҮЛКЕЙТУ */
+/* Басқа ештеңені өзгертпейді! */
+/* ============================= */
+
+/* iOS-ТЕ ҮЛКЕЙТУ (ТЕЛЕФОНДА КІШІ БОЛМАУ ҮШІН) */
+@media only screen and (max-width: 768px) {
+    /* ХАТ МӘТІНІН ҮЛКЕЙТУ (iOS) */
+    .letter-content.handwriting {
+        font-size: 24px !important;
+        line-height: 1.6 !important;
+    }
+    
+    /* КНОПКАЛАРДЫ ҮЛКЕЙТУ (iOS) */
+    .open-btn, .close-btn, .tap-btn {
+        min-height: 50px !important;
+        font-size: 18px !important;
+        padding: 15px !important;
+    }
+    
+    /* ХАТ БӨЛІМІН ҮЛКЕЙТУ (iOS) */
+    .letter {
+        padding: 25px !important;
+    }
+}
+
+/* АЙФОНДА ӨТЕ ҮЛКЕН ЕТУ */
+@media only screen and (max-width: 375px) {
+    /* МӘТІНДІ ӨТЕ ҮЛКЕН ЕТУ (iPhone) */
+    .letter-content.handwriting {
+        font-size: 22px !important;
+        line-height: 1.5 !important;
+    }
+    
+    /* КНОПКАЛАРДЫ ӨТЕ ҮЛКЕН ЕТУ (iPhone) */
+    .open-btn, .close-btn, .tap-btn {
+        min-height: 55px !important;
+        font-size: 20px !important;
+        padding: 18px !important;
+    }
+    
+    /* ТАҚЫРЫПТЫ ҮЛКЕЙТУ (iPhone) */
+    .letter-header h2 {
+        font-size: 28px !important;
+    }
+}
+
+/* iOS SAFARI АРНАЙЫ ТҮЗЕТУ */
+@supports (-webkit-touch-callout: none) {
+    /* КНОПКАЛАРҒА ЖАҚСЫ ЖЕР БАСУ АЙМАҒЫ */
+    button {
+        cursor: pointer;
+        -webkit-tap-highlight-color: rgba(255, 255, 255, 0.3);
+    }
+    
+    /* СКРОЛЛДЫ ЖАҚСАРТУ */
+    .letter-content.handwriting {
+        -webkit-overflow-scrolling: touch;
+    }
 }
