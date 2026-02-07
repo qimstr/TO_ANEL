@@ -5,20 +5,30 @@ function openCard() {
     // Жұлдызшалар эффектісі
     createStars(15);
     
-    // Анимация жабу
+    // Жабық карточканы жасыру
     closedCard.style.animation = 'none';
     closedCard.style.opacity = '0';
-    closedCard.style.transform = 'scale(0.9) translateY(20px)';
+    closedCard.style.transform = 'translate(-50%, -50%) scale(0.9) translateY(20px)';
     
     setTimeout(() => {
         closedCard.style.display = 'none';
-        openedCard.style.display = 'block';
+        openedCard.style.display = 'flex'; // flex деп өзгерту ортаға туралау үшін
+        
+        // iOS үшін орналастыруды бекіту
+        openedCard.style.position = 'fixed';
+        openedCard.style.top = '50%';
+        openedCard.style.left = '50%';
+        openedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        openedCard.style.width = '90%';
+        openedCard.style.maxWidth = '650px';
+        openedCard.style.zIndex = '1000';
+        openedCard.style.minHeight = '600px';
         
         // Анимация ашу
         setTimeout(() => {
             openedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             openedCard.style.opacity = '1';
-            openedCard.style.transform = 'scale(1) translateY(0)';
+            openedCard.style.transform = 'translate(-50%, -50%) scale(1)';
         }, 10);
     }, 400);
 }
@@ -30,20 +40,29 @@ function closeCard() {
     // Жұлдызшалар эффектісі
     createStars(10);
     
-    // Анимация жабу
+    // Ашық карточканы жасыру
     openedCard.style.animation = 'none';
     openedCard.style.opacity = '0';
-    openedCard.style.transform = 'scale(0.9) translateY(20px)';
+    openedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
     
     setTimeout(() => {
         openedCard.style.display = 'none';
-        closedCard.style.display = 'block';
+        closedCard.style.display = 'flex'; // flex деп өзгерту
+        
+        // iOS үшін орналастыруды бекіту
+        closedCard.style.position = 'fixed';
+        closedCard.style.top = '50%';
+        closedCard.style.left = '50%';
+        closedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
+        closedCard.style.width = '90%';
+        closedCard.style.maxWidth = '500px';
+        closedCard.style.zIndex = '1000';
         
         // Анимация ашу
         setTimeout(() => {
             closedCard.style.animation = 'fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1)';
             closedCard.style.opacity = '1';
-            closedCard.style.transform = 'scale(1) translateY(0)';
+            closedCard.style.transform = 'translate(-50%, -50%) scale(1)';
         }, 10);
     }, 400);
 }
@@ -52,7 +71,7 @@ function goToHearts() {
     // Жүректер эффектісі
     createHeartsEffect();
     
-    // 2 секундтан кейін бетті ауыстыру
+    // 2 секундтан кейін бетті ауыстыру - ЕСКЕРТУ: Сіз бұл функцияны өзгерткіңіз келмейді
     setTimeout(() => {
         window.location.href = 'heart/heart.html';
     }, 1000);
@@ -121,10 +140,59 @@ document.addEventListener('DOMContentLoaded', () => {
     const closedCard = document.getElementById('closedCard');
     const openedCard = document.getElementById('openedCard');
     
+    // iOS үшін бастапқы орналастыруды бекіту
+    closedCard.style.position = 'fixed';
+    closedCard.style.top = '50%';
+    closedCard.style.left = '50%';
+    closedCard.style.transform = 'translate(-50%, -50%)';
+    closedCard.style.width = '90%';
+    closedCard.style.maxWidth = '500px';
     closedCard.style.opacity = '1';
-    closedCard.style.transform = 'scale(1) translateY(0)';
+    closedCard.style.display = 'flex';
+    closedCard.style.flexDirection = 'column';
+    closedCard.style.alignItems = 'center';
+    closedCard.style.zIndex = '1000';
+    
+    openedCard.style.position = 'fixed';
+    openedCard.style.top = '50%';
+    openedCard.style.left = '50%';
+    openedCard.style.transform = 'translate(-50%, -50%) scale(0.9)';
+    openedCard.style.width = '90%';
+    openedCard.style.maxWidth = '650px';
     openedCard.style.opacity = '0';
-    openedCard.style.transform = 'scale(0.9) translateY(20px)';
+    openedCard.style.display = 'none';
+    openedCard.style.flexDirection = 'column';
+    openedCard.style.alignItems = 'center';
+    openedCard.style.zIndex = '1000';
+    openedCard.style.minHeight = '600px';
+    
+    // iOS Safari үшін бекіту
+    if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+        // iOS құрылғысында қосымша түзетулер
+        document.body.style.height = '-webkit-fill-available';
+        document.body.style.overflow = 'hidden';
+        
+        // Кнопкаларға үлкен жер басу аймағы
+        const buttons = document.querySelectorAll('button');
+        buttons.forEach(btn => {
+            btn.style.minHeight = '60px';
+            btn.style.fontSize = '24px';
+            btn.style.padding = '20px';
+        });
+        
+        // Мәтінді үлкейту
+        const handwriting = document.querySelector('.handwriting');
+        if (handwriting) {
+            handwriting.style.fontSize = '28px';
+            handwriting.style.lineHeight = '1.6';
+        }
+        
+        // Тақырыпты үлкейту
+        const header = document.querySelector('.letter-header h2');
+        if (header) {
+            header.style.fontSize = '36px';
+        }
+    }
 });
 
 // Фондағы жұлдызшаларды қайта жасау
@@ -133,4 +201,3 @@ setInterval(() => {
         createStars(3);
     }
 }, 3000);
-
