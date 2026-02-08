@@ -342,19 +342,19 @@ function adjustForMobile() {
     const isSmallMobile = window.innerWidth < 500;
     
     if (isSmallMobile) {
-        settings.mainTextSize = 30;
+        settings.mainTextSize = 20;
         settings.heartTextCount = 50;
         settings.heartSize = 15;
         settings.heartTextSize = 14;
         settings.particlesCount = 10;
     } else if (isMobile) {
-        settings.mainTextSize = 30;
+        settings.mainTextSize = 20;
         settings.heartTextCount = 50;
         settings.heartSize = 18;
         settings.heartTextSize = 16;
         settings.particlesCount = 14;
     } else {
-        settings.mainTextSize = 30;
+        settings.mainTextSize = 20;
         settings.heartTextCount = 50;
         settings.heartSize = 20;
         settings.heartTextSize = 18;
