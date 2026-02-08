@@ -8,7 +8,7 @@ const settings = {
     // ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН ⭐
     mainText: "I LOVE YOU",
     mainTextSize: 80,
-    mainPulseSpeed: 0.01,
+    mainPulseSpeed: 0.05,
     mainPulseAmount: 0.05,
     mainColor: "#FFFFFF", // Чистый белый
     shadowColor: "#FF69B4", // Мягкий розовый shadow
