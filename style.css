@@ -66,12 +66,14 @@ body {
 
 /* ==================== КОНВЕРТ СТИЛЬДЕРІ (ИСПРАВЛЕНО) ==================== */
 .card-closed {
-    width: 700px;
+    width: 100%;
+    max-width: 700px;
     text-align: center;
     position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 }
 
 /* ==================== КРАСИВЫЙ КОНВЕРТ ==================== */
@@ -80,9 +82,11 @@ body {
     max-width: 500px;
     height: 280px;
     position: relative;
-    margin: 0 auto 50px;
+    margin: 0 auto 40px;
     transform-style: preserve-3d;
     transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    left: 0;
+    right: 0;
 }
 
 /* Задняя часть конверта (основа) */
