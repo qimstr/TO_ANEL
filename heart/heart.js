@@ -6,35 +6,35 @@ canvas.height = window.innerHeight;
 
 const settings = {
     // ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН ⭐
-    mainText: "Котенчик",
-    mainTextSize: 40,
+    mainText: "Anel",
+    mainTextSize: 50,
     mainPulseSpeed: 0.015,
-    mainPulseAmount: 0.05,
-    mainColor: "#fe7dccbd", // Ақ түс
-    shadowColor: "#f8175e", // Розовый shadow түсі
+    mainPulseAmount: 0.08,
+    mainColor: "#FFE5F1", // Нежный розово-белый
+    shadowColor: "#FF1493", // Яркий розовый shadow
     mainGlow: true,
     
     // ⭐ АРТТАҒЫ ЖҮРЕК АНИМАЦИЯСЫ ⭐
-    heartText: "I love you",
-    heartTextCount: 70,
-    heartTextSize: 16,
-    heartSize: 24,
-    heartSpeed: 0.002,
-    heartColor: "rgba(255, 51, 102, 0.3)", // Ашық түс
-    heartOpacity: 0.1, // Мөлдірлік
+    heartText: "♥",
+    heartTextCount: 80,
+    heartTextSize: 20,
+    heartSize: 26,
+    heartSpeed: 0.0015,
+    heartColor: "rgba(255, 105, 180, 0.4)",
+    heartOpacity: 0.15,
     
     // Жалпы
     currentTime: 0,
     heartAngle: 0,
-    particlesCount: 20,
+    particlesCount: 30,
     
     // ⭐ ЕКІ АНИМАЦИЯНЫ БАСҚАРУ ⭐
-    showMainText: true,      // Ортадағы мәтін
-    showHeart: true,         // Арттағы жүрек
-    showParticles: true      // Бөлшектер
+    showMainText: true,
+    showHeart: true,
+    showParticles: true
 };
 
-// ⭐ БӨЛШЕКТЕР ⭐
+// ⭐ БӨЛШЕКТЕР - УЛУЧШЕННЫЕ ⭐
 class Particle {
     constructor() {
         this.reset();
@@ -42,15 +42,30 @@ class Particle {
     
     reset() {
         this.angle = Math.random() * Math.PI * 2;
-        this.distance = 50 + Math.random() * 150;
-        this.speed = 0.5 + Math.random() * 1;
-        this.size = 2 + Math.random() * 4;
-        this.opacity = 0.2 + Math.random() * 0.3;
+        this.distance = 80 + Math.random() * 200;
+        this.speed = 0.3 + Math.random() * 0.8;
+        this.size = 2 + Math.random() * 3;
+        this.opacity = 0.3 + Math.random() * 0.5;
+        this.color = this.getRandomColor();
+    }
+    
+    getRandomColor() {
+        const colors = [
+            'rgba(255, 182, 193, 0.6)',  // Светло-розовый
+            'rgba(255, 105, 180, 0.6)',  // Ярко-розовый
+            'rgba(255, 20, 147, 0.6)',   // Deep pink
+            'rgba(255, 228, 225, 0.6)',  // Нежный розовый
+            'rgba(219, 112, 147, 0.6)'   // Палевый розовый
+        ];
+        return colors[Math.floor(Math.random() * colors.length)];
     }
     
     update() {
-        this.angle += 0.01;
-        this.distance += Math.sin(settings.currentTime * 0.002 + this.angle) * 0.5;
+        this.angle += 0.008;
+        this.distance += Math.sin(settings.currentTime * 0.003 + this.angle) * 0.3;
+        
+        // Пульсация размера
+        this.size = 2 + Math.sin(settings.currentTime * 0.02 + this.angle) * 1.5;
     }
     
     draw(centerX, centerY) {
@@ -58,9 +73,13 @@ class Particle {
         const y = centerY + Math.sin(this.angle) * this.distance;
         
         ctx.beginPath();
-        ctx.fillStyle = `rgba(255, 51, 102, ${this.opacity})`;
+        ctx.fillStyle = this.color;
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = this.color;
         ctx.arc(x, y, this.size, 0, Math.PI * 2);
         ctx.fill();
+        
+        ctx.shadowBlur = 0;
     }
 }
 
@@ -80,15 +99,14 @@ function heartPosition(t) {
     return { x, y: -y };
 }
 
-// ⭐ АРТТАҒЫ ЖҮРЕК АНИМАЦИЯСЫ ⭐
+// ⭐ АРТТАҒЫ ЖҮРЕК АНИМАЦИЯСЫ - УЛУЧШЕННАЯ ⭐
 function drawHeartAnimation() {
     if (!settings.showHeart) return;
     
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     
-    // Жеңіл толқын эффектісі
-    const wave = Math.sin(settings.currentTime * 0.005) * 0.05;
+    const wave = Math.sin(settings.currentTime * 0.004) * 0.08;
     
     for (let i = 0; i < settings.heartTextCount; i++) {
         const localOffset = (i / settings.heartTextCount) * Math.PI * 2;
@@ -96,89 +114,105 @@ function drawHeartAnimation() {
         
         const pos = heartPosition(t);
         
-        // Мөлдірлік эффектісі
-        const opacity = settings.heartOpacity * (0.7 + 0.3 * Math.sin(t * 2 + settings.currentTime * 0.01));
+        // Радужный эффект
+        const hue = (t * 50 + settings.currentTime * 0.5) % 60 + 320;
+        const opacity = settings.heartOpacity * (0.5 + 0.5 * Math.sin(t * 3 + settings.currentTime * 0.015));
         
         const x = centerX + pos.x * (settings.heartSize * (1 + wave));
         const y = centerY + pos.y * (settings.heartSize * (1 + wave));
         
-        // Мәтін сызу
+        // Сердечки с градиентом
         ctx.font = `${settings.heartTextSize}px Arial`;
-        ctx.fillStyle = `rgba(255, 51, 102, ${opacity})`;
+        ctx.fillStyle = `hsla(${hue}, 100%, 70%, ${opacity})`;
         ctx.textAlign = "center";
         ctx.textBaseline = "middle";
+        
+        // Легкое свечение
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = `hsla(${hue}, 100%, 70%, ${opacity * 0.5})`;
         ctx.fillText(settings.heartText, x, y);
     }
     
+    ctx.shadowBlur = 0;
     settings.heartAngle += settings.heartSpeed;
 }
 
-// ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН (АҚ ТҮС + РОЗОВЫЙ SHADOW) ⭐
+// ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН - УЛУЧШЕННЫЙ ⭐
 function drawMainText() {
     if (!settings.showMainText) return;
     
     const centerX = canvas.width / 2;
     const centerY = canvas.height / 2;
     
-    // Пульсация
     const pulse = 1 + Math.sin(settings.currentTime * settings.mainPulseSpeed) * settings.mainPulseAmount;
     const fontSize = settings.mainTextSize * pulse;
     
-    // ⭐ 1. Бірінші қабат: Розовый shadow қатты версиясы ⭐
+    // ⭐ МНОГОСЛОЙНОЕ СВЕЧЕНИЕ ⭐
     ctx.save();
+    
+    // Слой 1: Внешнее яркое свечение
     ctx.shadowColor = settings.shadowColor;
-    ctx.shadowBlur = 25 * pulse;
+    ctx.shadowBlur = 40 * pulse;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     
-    ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
     ctx.fillStyle = settings.mainColor;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     
-    // Өте жеңіл айналу
     ctx.save();
     ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.03);
+    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
+    ctx.fillText(settings.mainText, 0, 0);
+    ctx.restore();
+    
+    // Слой 2: Среднее свечение
+    ctx.shadowBlur = 20 * pulse;
+    ctx.shadowColor = '#FFB6C1';
+    
+    ctx.save();
+    ctx.translate(centerX, centerY);
+    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
     ctx.fillText(settings.mainText, 0, 0);
     ctx.restore();
     
     ctx.restore();
     
-    // ⭐ 2. Екінші қабат: Негізгі ақ мәтін (shadow жоқ) ⭐
-    ctx.font = `bold ${fontSize}px Arial, sans-serif`;
+    // Слой 3: Основной текст
+    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
     ctx.fillStyle = settings.mainColor;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
     
-    // Өте жеңіл айналу
     ctx.save();
     ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.03);
+    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
     ctx.fillText(settings.mainText, 0, 0);
     ctx.restore();
     
-    // ⭐ 3. Үшінші қабат: Жеңіл glow эффекті ⭐
+    // Слой 4: Блик
     ctx.save();
-    ctx.globalCompositeOperation = "overlay";
-    ctx.fillStyle = `rgba(255, 105, 180, 0.15)`;
-    ctx.font = `bold ${fontSize}px Arial, sans-serif`;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+    ctx.globalCompositeOperation = "screen";
+    const gradient = ctx.createLinearGradient(
+        centerX - fontSize, centerY - fontSize/2,
+        centerX + fontSize, centerY + fontSize/2
+    );
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
+    gradient.addColorStop(0.5, 'rgba(255, 182, 193, 0.6)');
+    gradient.addColorStop(1, 'rgba(255, 105, 180, 0.4)');
+    
+    ctx.fillStyle = gradient;
+    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
     
     ctx.save();
     ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.03);
+    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
     
-    // Біраз ығысқан көшірме для glow эффекта
-    const glowOffset = Math.sin(settings.currentTime * 0.02) * 3;
-    ctx.fillText(settings.mainText, glowOffset, glowOffset);
+    const glowOffset = Math.sin(settings.currentTime * 0.025) * 2;
+    ctx.fillText(settings.mainText, glowOffset, -glowOffset);
     ctx.restore();
     ctx.restore();
-    
-    // Shadow қайта орнату
-    ctx.shadowColor = 'transparent';
-    ctx.shadowBlur = 0;
 }
 
 // ⭐ БӨЛШЕКТЕР ⭐
@@ -194,36 +228,45 @@ function drawParticles() {
     });
 }
 
-// ⭐ ФОН ЭФФЕКТІ ⭐
+// ⭐ ФОН ЭФФЕКТІ - УЛУЧШЕННЫЙ ⭐
 function drawBackground() {
-    // Градиент фон
+    // Градиентный фон с розовыми оттенками
     const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
-        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 2
+        canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 1.5
     );
     
-    gradient.addColorStop(0, 'rgba(0, 0, 0, 0.1)');
-    gradient.addColorStop(1, 'rgba(20, 0, 10, 0.3)');
+    gradient.addColorStop(0, 'rgba(40, 10, 30, 0.15)');
+    gradient.addColorStop(0.5, 'rgba(60, 20, 50, 0.25)');
+    gradient.addColorStop(1, 'rgba(80, 30, 60, 0.35)');
     
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Жұлдызшалар
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.1)';
-    for (let i = 0; i < 50; i++) {
-        const x = (Math.sin(settings.currentTime * 0.001 + i) * 0.5 + 0.5) * canvas.width;
-        const y = (Math.cos(settings.currentTime * 0.001 + i * 0.7) * 0.5 + 0.5) * canvas.height;
-        const size = Math.sin(settings.currentTime * 0.01 + i) * 0.5 + 1;
+    // Плавающие звездочки разных цветов
+    for (let i = 0; i < 60; i++) {
+        const x = (Math.sin(settings.currentTime * 0.0008 + i) * 0.5 + 0.5) * canvas.width;
+        const y = (Math.cos(settings.currentTime * 0.0007 + i * 0.7) * 0.5 + 0.5) * canvas.height;
+        const size = Math.sin(settings.currentTime * 0.015 + i) * 0.8 + 1.2;
+        
+        // Цветные звездочки
+        const hue = (i * 15 + settings.currentTime * 0.3) % 60 + 300;
+        const opacity = 0.3 + Math.sin(settings.currentTime * 0.01 + i) * 0.3;
         
         ctx.beginPath();
+        ctx.fillStyle = `hsla(${hue}, 80%, 70%, ${opacity})`;
+        ctx.shadowBlur = 8;
+        ctx.shadowColor = `hsla(${hue}, 80%, 70%, ${opacity})`;
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fill();
     }
+    
+    ctx.shadowBlur = 0;
 }
 
 // ⭐ БАСТАПҚЫ ФОН ⭐
 function clearCanvas() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.fillStyle = "rgba(10, 5, 15, 0.12)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 }
 
@@ -231,9 +274,9 @@ function clearCanvas() {
 function animate() {
     clearCanvas();
     drawBackground();
-    drawHeartAnimation();    // ⭐ АРТТАҒЫ ЖҮРЕК ⭐
+    drawHeartAnimation();
     drawParticles();
-    drawMainText();          // ⭐ ОРТАДАҒЫ МӘТІН ⭐
+    drawMainText();
     
     settings.currentTime += 1;
     requestAnimationFrame(animate);
@@ -292,27 +335,21 @@ window.addEventListener('keydown', (e) => {
         case 'S':
             settings.mainPulseSpeed = Math.max(0.001, settings.mainPulseSpeed - 0.005);
             break;
-        case 'g':
-        case 'G':
-            settings.mainGlow = !settings.mainGlow;
-            console.log('Жарқыл эффектісі: ' + (settings.mainGlow ? 'ҚОСЫЛҒАН' : 'ӨШІРІЛГЕН'));
-            break;
         case 't':
         case 'T':
-            settings.mainText = settings.mainText === "Котенчик" ? "I love you" : "Котенчик";
+            settings.mainText = settings.mainText === "Anel" ? "I love you" : "Anel";
             console.log('Мәтін өзгерді: ' + settings.mainText);
             break;
         case '0':
-            // Барлығын қалпына келтіру
-            settings.mainText = "Котенчик";
-            settings.mainTextSize = 60;
+            settings.mainText = "Anel";
+            settings.mainTextSize = 50;
             settings.mainPulseSpeed = 0.015;
-            settings.mainPulseAmount = 0.05;
-            settings.mainColor = "#FFFFFF";
-            settings.shadowColor = "#FF69B4";
-            settings.heartSize = 24;
-            settings.heartSpeed = 0.002;
-            settings.heartOpacity = 0.1;
+            settings.mainPulseAmount = 0.08;
+            settings.mainColor = "#FFE5F1";
+            settings.shadowColor = "#FF1493";
+            settings.heartSize = 26;
+            settings.heartSpeed = 0.0015;
+            settings.heartOpacity = 0.15;
             settings.showMainText = true;
             settings.showHeart = true;
             settings.showParticles = true;
@@ -340,31 +377,16 @@ window.addEventListener('resize', () => {
 });
 
 console.log("=========================================");
-console.log("❤️ КОТЕНЧИК - АҚ ТҮС + РОЗОВЫЙ SHADOW");
+console.log("💖 ANEL - РОМАНТИКАЛЫҚ АНИМАЦИЯ");
 console.log("=========================================");
-console.log("✅ Ортадағы мәтін: 'Котенчик'");
-console.log("   • Ақ түсте");
-console.log("   • Розовый shadow бар");
-console.log("   • Пульсирует");
+console.log("✨ Нежно-розовое свечение");
+console.log("💕 Вращающиеся сердечки");
+console.log("⭐ Цветные частицы и звездочки");
 console.log("");
-console.log("✅ Арттағы жүрек анимациясы");
-console.log("   • 'I love you' мәтіні");
-console.log("   • Жүрек формасында айналады");
-console.log("   • Мөлдір, жеңіл");
-console.log("");
-console.log("🎮 БАСҚАРУ ПЕРНЕЛЕРІ:");
-console.log("   +/- - Негізгі мәтін өлшемі");
+console.log("🎮 БАСҚАРУ:");
+console.log("   +/- - Мәтін өлшемі");
 console.log("   H/J - Жүрек өлшемі");
-console.log("   K/L - Жүрек жылдамдығы");
-console.log("   U/I - Жүрек мөлдірлігі");
-console.log("");
-console.log("   1 - Негізгі мәтінді қосу/өшіру");
-console.log("   2 - Жүрек анимациясын қосу/өшіру");
-console.log("   3 - Бөлшектерді қосу/өшіру");
-console.log("");
-console.log("   W/S - Пульсация жылдамдығы");
-console.log("   G - Жарқыл эффектісі");
-console.log("   T - Мәтін өзгерту (Котенчик ↔ I love you)");
-console.log("   ПРОБЕЛ - Ақпаратты көрсету");
-console.log("   0 - БАРЛЫҒЫН қалпына келтіру");
+console.log("   1/2/3 - Элементтерді қосу/өшіру");
+console.log("   T - Мәтін өзгерту");
+console.log("   0 - Қалпына келтіру");
 console.log("=========================================");
