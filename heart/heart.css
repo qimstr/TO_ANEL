@@ -5,7 +5,7 @@
 }
 
 body {
-    background: #000;
+    background: linear-gradient(135deg, #0a0510 0%, #1a0a1e 25%, #2d1535 50%, #1e0a2d 75%, #0f0515 100%);
     overflow: hidden;
     height: 100vh;
     width: 100vw;
@@ -32,22 +32,57 @@ canvas {
 
 .back-btn {
     position: fixed;
-    top: 20px;
-    left: 20px;
-    padding: 12px 25px;
-    background: rgba(255, 255, 255, 0.1);
-    color: white;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: 10px;
+    top: 25px;
+    left: 25px;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.2), rgba(255, 20, 147, 0.2));
+    color: #FFE5F1;
+    border: 2px solid rgba(255, 182, 193, 0.4);
+    border-radius: 12px;
     font-size: 18px;
+    font-weight: 600;
     cursor: pointer;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     z-index: 100;
-    transition: all 0.3s;
-    font-family: Arial, sans-serif;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    letter-spacing: 0.5px;
+    box-shadow: 
+        0 8px 25px rgba(255, 105, 180, 0.3),
+        inset 0 1px 3px rgba(255, 255, 255, 0.2);
 }
 
 .back-btn:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px);
+    background: linear-gradient(135deg, rgba(255, 105, 180, 0.35), rgba(255, 20, 147, 0.35));
+    border-color: rgba(255, 182, 193, 0.6);
+    transform: translateY(-3px);
+    box-shadow: 
+        0 12px 35px rgba(255, 105, 180, 0.5),
+        inset 0 1px 5px rgba(255, 255, 255, 0.3);
+}
+
+.back-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 6px 20px rgba(255, 105, 180, 0.4),
+        inset 0 1px 3px rgba(255, 255, 255, 0.2);
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 768px) {
+    .back-btn {
+        top: 15px;
+        left: 15px;
+        padding: 12px 24px;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 500px) {
+    .back-btn {
+        top: 12px;
+        left: 12px;
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
