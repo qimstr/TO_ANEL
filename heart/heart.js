@@ -7,26 +7,26 @@ canvas.height = window.innerHeight;
 const settings = {
     // ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН ⭐
     mainText: "Anel",
-    mainTextSize: 50,
-    mainPulseSpeed: 0.015,
-    mainPulseAmount: 0.08,
-    mainColor: "#FFE5F1", // Нежный розово-белый
-    shadowColor: "#FF1493", // Яркий розовый shadow
+    mainTextSize: 70,
+    mainPulseSpeed: 0.01,
+    mainPulseAmount: 0.05,
+    mainColor: "#FFFFFF", // Чистый белый
+    shadowColor: "#FF69B4", // Мягкий розовый shadow
     mainGlow: true,
     
     // ⭐ АРТТАҒЫ ЖҮРЕК АНИМАЦИЯСЫ ⭐
     heartText: "♥",
-    heartTextCount: 80,
-    heartTextSize: 20,
-    heartSize: 26,
-    heartSpeed: 0.0015,
+    heartTextCount: 50,
+    heartTextSize: 18,
+    heartSize: 20,
+    heartSpeed: 0.001,
     heartColor: "rgba(255, 105, 180, 0.4)",
-    heartOpacity: 0.15,
+    heartOpacity: 0.12,
     
     // Жалпы
     currentTime: 0,
     heartAngle: 0,
-    particlesCount: 30,
+    particlesCount: 15,
     
     // ⭐ ЕКІ АНИМАЦИЯНЫ БАСҚАРУ ⭐
     showMainText: true,
@@ -137,7 +137,7 @@ function drawHeartAnimation() {
     settings.heartAngle += settings.heartSpeed;
 }
 
-// ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН - УЛУЧШЕННЫЙ ⭐
+// ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН - МИНИМАЛИСТІК ⭐
 function drawMainText() {
     if (!settings.showMainText) return;
     
@@ -147,71 +147,28 @@ function drawMainText() {
     const pulse = 1 + Math.sin(settings.currentTime * settings.mainPulseSpeed) * settings.mainPulseAmount;
     const fontSize = settings.mainTextSize * pulse;
     
-    // ⭐ МНОГОСЛОЙНОЕ СВЕЧЕНИЕ ⭐
+    // Простой элегантный стиль
     ctx.save();
     
-    // Слой 1: Внешнее яркое свечение
+    // Мягкое свечение
     ctx.shadowColor = settings.shadowColor;
-    ctx.shadowBlur = 40 * pulse;
+    ctx.shadowBlur = 25 * pulse;
     ctx.shadowOffsetX = 0;
     ctx.shadowOffsetY = 0;
     
-    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
+    ctx.font = `${fontSize}px 'Arial', sans-serif`;
     ctx.fillStyle = settings.mainColor;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
+    ctx.letterSpacing = '5px';
     
+    // Легкое вращение
     ctx.save();
     ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
+    ctx.rotate(Math.sin(settings.currentTime * 0.0008) * 0.02);
     ctx.fillText(settings.mainText, 0, 0);
     ctx.restore();
     
-    // Слой 2: Среднее свечение
-    ctx.shadowBlur = 20 * pulse;
-    ctx.shadowColor = '#FFB6C1';
-    
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
-    ctx.fillText(settings.mainText, 0, 0);
-    ctx.restore();
-    
-    ctx.restore();
-    
-    // Слой 3: Основной текст
-    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
-    ctx.fillStyle = settings.mainColor;
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
-    ctx.fillText(settings.mainText, 0, 0);
-    ctx.restore();
-    
-    // Слой 4: Блик
-    ctx.save();
-    ctx.globalCompositeOperation = "screen";
-    const gradient = ctx.createLinearGradient(
-        centerX - fontSize, centerY - fontSize/2,
-        centerX + fontSize, centerY + fontSize/2
-    );
-    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.4)');
-    gradient.addColorStop(0.5, 'rgba(255, 182, 193, 0.6)');
-    gradient.addColorStop(1, 'rgba(255, 105, 180, 0.4)');
-    
-    ctx.fillStyle = gradient;
-    ctx.font = `bold ${fontSize}px 'Brush Script MT', cursive`;
-    
-    ctx.save();
-    ctx.translate(centerX, centerY);
-    ctx.rotate(Math.sin(settings.currentTime * 0.001) * 0.04);
-    
-    const glowOffset = Math.sin(settings.currentTime * 0.025) * 2;
-    ctx.fillText(settings.mainText, glowOffset, -glowOffset);
-    ctx.restore();
     ctx.restore();
 }
 
@@ -228,35 +185,34 @@ function drawParticles() {
     });
 }
 
-// ⭐ ФОН ЭФФЕКТІ - УЛУЧШЕННЫЙ ⭐
+// ⭐ ФОН ЭФФЕКТІ - МИНИМАЛИСТІК ⭐
 function drawBackground() {
-    // Градиентный фон с розовыми оттенками
+    // Простой градиент
     const gradient = ctx.createRadialGradient(
         canvas.width / 2, canvas.height / 2, 0,
         canvas.width / 2, canvas.height / 2, Math.max(canvas.width, canvas.height) / 1.5
     );
     
-    gradient.addColorStop(0, 'rgba(40, 10, 30, 0.15)');
-    gradient.addColorStop(0.5, 'rgba(60, 20, 50, 0.25)');
-    gradient.addColorStop(1, 'rgba(80, 30, 60, 0.35)');
+    gradient.addColorStop(0, 'rgba(30, 10, 20, 0.1)');
+    gradient.addColorStop(0.5, 'rgba(50, 20, 40, 0.2)');
+    gradient.addColorStop(1, 'rgba(60, 25, 50, 0.3)');
     
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // Плавающие звездочки разных цветов
-    for (let i = 0; i < 60; i++) {
-        const x = (Math.sin(settings.currentTime * 0.0008 + i) * 0.5 + 0.5) * canvas.width;
-        const y = (Math.cos(settings.currentTime * 0.0007 + i * 0.7) * 0.5 + 0.5) * canvas.height;
-        const size = Math.sin(settings.currentTime * 0.015 + i) * 0.8 + 1.2;
+    // Меньше звездочек
+    for (let i = 0; i < 30; i++) {
+        const x = (Math.sin(settings.currentTime * 0.0006 + i) * 0.5 + 0.5) * canvas.width;
+        const y = (Math.cos(settings.currentTime * 0.0005 + i * 0.7) * 0.5 + 0.5) * canvas.height;
+        const size = Math.sin(settings.currentTime * 0.01 + i) * 0.5 + 0.8;
         
-        // Цветные звездочки
-        const hue = (i * 15 + settings.currentTime * 0.3) % 60 + 300;
-        const opacity = 0.3 + Math.sin(settings.currentTime * 0.01 + i) * 0.3;
+        const hue = (i * 20 + settings.currentTime * 0.2) % 60 + 310;
+        const opacity = 0.2 + Math.sin(settings.currentTime * 0.008 + i) * 0.2;
         
         ctx.beginPath();
-        ctx.fillStyle = `hsla(${hue}, 80%, 70%, ${opacity})`;
-        ctx.shadowBlur = 8;
-        ctx.shadowColor = `hsla(${hue}, 80%, 70%, ${opacity})`;
+        ctx.fillStyle = `hsla(${hue}, 70%, 65%, ${opacity})`;
+        ctx.shadowBlur = 5;
+        ctx.shadowColor = `hsla(${hue}, 70%, 65%, ${opacity * 0.5})`;
         ctx.arc(x, y, size, 0, Math.PI * 2);
         ctx.fill();
     }
@@ -342,17 +298,18 @@ window.addEventListener('keydown', (e) => {
             break;
         case '0':
             settings.mainText = "Anel";
-            settings.mainTextSize = 50;
-            settings.mainPulseSpeed = 0.015;
-            settings.mainPulseAmount = 0.08;
-            settings.mainColor = "#FFE5F1";
-            settings.shadowColor = "#FF1493";
-            settings.heartSize = 26;
-            settings.heartSpeed = 0.0015;
-            settings.heartOpacity = 0.15;
+            settings.mainTextSize = 70;
+            settings.mainPulseSpeed = 0.01;
+            settings.mainPulseAmount = 0.05;
+            settings.mainColor = "#FFFFFF";
+            settings.shadowColor = "#FF69B4";
+            settings.heartSize = 20;
+            settings.heartSpeed = 0.001;
+            settings.heartOpacity = 0.12;
             settings.showMainText = true;
             settings.showHeart = true;
             settings.showParticles = true;
+            adjustForMobile();
             console.log('БАРЛЫҒЫ ҚАЛПЫНА КЕЛТІРІЛДІ');
             break;
         case ' ':
@@ -374,14 +331,52 @@ animate();
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+    
+    // Мобильная адаптация
+    adjustForMobile();
 });
 
+// ⭐ МОБИЛЬНАЯ АДАПТАЦИЯ ⭐
+function adjustForMobile() {
+    const isMobile = window.innerWidth < 768;
+    const isSmallMobile = window.innerWidth < 500;
+    
+    if (isSmallMobile) {
+        settings.mainTextSize = 40;
+        settings.heartTextCount = 30;
+        settings.heartSize = 15;
+        settings.heartTextSize = 14;
+        settings.particlesCount = 8;
+    } else if (isMobile) {
+        settings.mainTextSize = 55;
+        settings.heartTextCount = 40;
+        settings.heartSize = 18;
+        settings.heartTextSize = 16;
+        settings.particlesCount = 12;
+    } else {
+        settings.mainTextSize = 70;
+        settings.heartTextCount = 50;
+        settings.heartSize = 20;
+        settings.heartTextSize = 18;
+        settings.particlesCount = 15;
+    }
+    
+    // Обновляем частицы
+    particles.length = 0;
+    for (let i = 0; i < settings.particlesCount; i++) {
+        particles.push(new Particle());
+    }
+}
+
+// Первичная адаптация
+adjustForMobile();
+
 console.log("=========================================");
-console.log("💖 ANEL - РОМАНТИКАЛЫҚ АНИМАЦИЯ");
+console.log("💖 ANEL - МИНИМАЛИСТІК АНИМАЦИЯ");
 console.log("=========================================");
-console.log("✨ Нежно-розовое свечение");
-console.log("💕 Вращающиеся сердечки");
-console.log("⭐ Цветные частицы и звездочки");
+console.log("✨ Жай және элегантты стиль");
+console.log("💕 Ақ түс + розовый жарық");
+console.log("⭐ Қарапайым сердечки мен жұлдызшалар");
 console.log("");
 console.log("🎮 БАСҚАРУ:");
 console.log("   +/- - Мәтін өлшемі");
