@@ -6,8 +6,8 @@ canvas.height = window.innerHeight;
 
 const settings = {
     // ⭐ ОРТАДАҒЫ НЕГІЗГІ МӘТІН ⭐
-    mainText: "Anel",
-    mainTextSize: 70,
+    mainText: "I LOVE YOU",
+    mainTextSize: 80,
     mainPulseSpeed: 0.01,
     mainPulseAmount: 0.05,
     mainColor: "#FFFFFF", // Чистый белый
@@ -342,23 +342,23 @@ function adjustForMobile() {
     const isSmallMobile = window.innerWidth < 500;
     
     if (isSmallMobile) {
-        settings.mainTextSize = 40;
-        settings.heartTextCount = 30;
+        settings.mainTextSize = 30;
+        settings.heartTextCount = 50;
         settings.heartSize = 15;
         settings.heartTextSize = 14;
-        settings.particlesCount = 8;
+        settings.particlesCount = 10;
     } else if (isMobile) {
-        settings.mainTextSize = 55;
-        settings.heartTextCount = 40;
+        settings.mainTextSize = 30;
+        settings.heartTextCount = 50;
         settings.heartSize = 18;
         settings.heartTextSize = 16;
-        settings.particlesCount = 12;
+        settings.particlesCount = 14;
     } else {
-        settings.mainTextSize = 70;
+        settings.mainTextSize = 30;
         settings.heartTextCount = 50;
         settings.heartSize = 20;
         settings.heartTextSize = 18;
-        settings.particlesCount = 15;
+        settings.particlesCount = 17;
     }
     
     // Обновляем частицы
